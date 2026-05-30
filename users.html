@@ -2,7 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e293b">
     <title>Zero POS - المستخدمين</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -50,14 +51,8 @@
                 </div>
                 <div class="table-container">
                     <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>الاسم</th><th>البريد</th><th>الدور</th><th>ساعات الاتصال</th><th>تاريخ الإنشاء</th><th>تاريخ الانتهاء</th><th>الحالة</th><th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="usersTableBody">
-                            <tr><td colspan="8" style="text-align:center; color:var(--secondary);">جاري التحميل...</td></tr>
-                        </tbody>
+                        <thead><tr><th>الاسم</th><th>البريد</th><th>الدور</th><th>ساعات الاتصال</th><th>تاريخ الإنشاء</th><th>تاريخ الانتهاء</th><th>الحالة</th><th>الإجراءات</th></tr></thead>
+                        <tbody id="usersTableBody"><tr><td colspan="8" style="text-align:center; color:var(--secondary);">جاري التحميل...</td></tr></tbody>
                     </table>
                 </div>
             </div>
@@ -66,67 +61,35 @@
 
     <div class="modal-overlay" id="addUserModal">
         <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">➕ إضافة مستخدم جديد</h3>
-                <button class="modal-close" onclick="closeModal('addUserModal')">×</button>
-            </div>
+            <div class="modal-header"><h3 class="modal-title">➕ إضافة مستخدم جديد</h3><button class="modal-close" onclick="closeModal('addUserModal')">×</button></div>
             <div class="modal-body">
                 <form id="addUserForm">
-                    <div class="form-group">
-                        <label>اسم المستخدم *</label>
-                        <input type="text" id="userName" class="form-control" placeholder="الاسم الكامل" required>
-                    </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني *</label>
-                        <input type="email" id="userEmail" class="form-control" placeholder="email@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور *</label>
-                        <input type="password" id="userPassword" class="form-control" placeholder="حرف كبير + حرف صغير + 10 أحرف على الأقل" required>
-                        <small style="color:var(--secondary);">يجب أن تحتوي على حرف كبير وحرف صغير ورقم وأن لا تقل عن 10 أحرف</small>
-                    </div>
+                    <div class="form-group"><label>اسم المستخدم *</label><input type="text" id="userName" class="form-control" placeholder="الاسم الكامل" required></div>
+                    <div class="form-group"><label>البريد الإلكتروني *</label><input type="email" id="userEmail" class="form-control" placeholder="email@example.com" required></div>
+                    <div class="form-group"><label>كلمة المرور *</label><input type="password" id="userPassword" class="form-control" placeholder="حرف كبير + حرف صغير + 10 أحرف على الأقل" required><small style="color:var(--secondary);">يجب أن تحتوي على حرف كبير وحرف صغير ورقم وأن لا تقل عن 10 أحرف</small></div>
                     <div class="grid-2">
-                        <div class="form-group">
-                            <label>نوع المستخدم *</label>
-                            <select id="userRole" class="form-control" required>
-                                <option value="كاشير">🖥️ كاشير</option>
-                                <option value="مستخدم">👤 مستخدم</option>
-                                <option value="مشرف">🛡️ مشرف</option>
-                                <option value="مدير">👑 مدير</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>مدة التفعيل (يوم)</label>
-                            <input type="number" id="expiryDays" class="form-control" value="30" min="1">
-                        </div>
+                        <div class="form-group"><label>نوع المستخدم *</label><select id="userRole" class="form-control" required><option value="كاشير">🖥️ كاشير</option><option value="مستخدم">👤 مستخدم</option><option value="مشرف">🛡️ مشرف</option><option value="مدير">👑 مدير</option></select></div>
+                        <div class="form-group"><label>مدة التفعيل (يوم)</label><input type="number" id="expiryDays" class="form-control" value="30" min="1"></div>
                     </div>
-                    <div class="modal-footer" style="padding:20px 0 0 0; border-top:1px solid var(--border);">
-                        <button type="button" class="btn btn-secondary modal-cancel" onclick="closeModal('addUserModal')">إلغاء</button>
-                        <button type="submit" class="btn btn-primary">حفظ المستخدم</button>
-                    </div>
+                    <div class="modal-footer" style="padding:20px 0 0 0; border-top:1px solid var(--border);"><button type="button" class="btn btn-secondary modal-cancel" onclick="closeModal('addUserModal')">إلغاء</button><button type="submit" class="btn btn-primary">حفظ المستخدم</button></div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
-    <script type="module">
-        import { Storage } from './db.js';
-
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-        });
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
         // Check admin access
-        async function checkAccess() {
-            const userData = Storage.get('currentUser');
+        (function() {
+            var userData = null;
+            try { userData = JSON.parse(localStorage.getItem('currentUser')); } catch(e) {}
             if (!userData || userData.role !== 'مدير') {
                 alert('غير مصرح لك بالوصول لهذه الصفحة');
                 window.location.href = 'dashboard.html';
-                return;
             }
-        }
-        checkAccess();
+        })();
     </script>
 </body>
 </html>

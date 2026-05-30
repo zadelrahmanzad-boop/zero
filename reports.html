@@ -2,7 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e293b">
     <title>Zero POS - التقارير</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -80,19 +81,13 @@
                     <div class="summary-item"><h4>متوسط الفاتورة</h4><p id="avgInvoice">0 ج.م</p></div>
                     <div class="summary-item"><h4>إجمالي الخصومات</h4><p id="totalDiscounts">0 ج.م</p></div>
                 </div>
-                <div class="chart-container">
-                    <h4 style="margin-bottom:15px;">المبيعات اليومية</h4>
-                    <div class="bar-chart" id="salesChart"><div style="text-align:center; width:100%; color:var(--secondary);">اختر نطاق تاريخ لعرض البيانات</div></div>
-                </div>
+                <div class="chart-container"><h4 style="margin-bottom:15px;">المبيعات اليومية</h4><div class="bar-chart" id="salesChart"><div style="text-align:center; width:100%; color:var(--secondary);">اختر نطاق تاريخ لعرض البيانات</div></div></div>
             </div>
 
             <div id="productsReport" class="report-card" style="display:none;">
                 <h3 style="margin-bottom:20px;">📦 تقرير المنتجات الأكثر مبيعاً</h3>
                 <div class="table-container">
-                    <table class="data-table">
-                        <thead><tr><th>#</th><th>المنتج</th><th>الكمية المباعة</th><th>إجمالي المبيعات</th><th>نسبة من الإجمالي</th></tr></thead>
-                        <tbody id="topProductsTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
-                    </table>
+                    <table class="data-table"><thead><tr><th>#</th><th>المنتج</th><th>الكمية المباعة</th><th>إجمالي المبيعات</th><th>نسبة من الإجمالي</th></tr></thead><tbody id="topProductsTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody></table>
                 </div>
             </div>
 
@@ -108,21 +103,17 @@
             <div id="usersReport" class="report-card" style="display:none;">
                 <h3 style="margin-bottom:20px;">👥 تقرير أداء المستخدمين</h3>
                 <div class="table-container">
-                    <table class="data-table">
-                        <thead><tr><th>المستخدم</th><th>الدور</th><th>عدد الفواتير</th><th>إجمالي المبيعات</th><th>متوسط الفاتورة</th></tr></thead>
-                        <tbody id="usersReportTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
-                    </table>
+                    <table class="data-table"><thead><tr><th>المستخدم</th><th>الدور</th><th>عدد الفواتير</th><th>إجمالي المبيعات</th><th>متوسط الفاتورة</th></tr></thead><tbody id="usersReportTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody></table>
                 </div>
             </div>
         </main>
     </div>
 
-    <script type="module" src="app.js"></script>
-    <script type="module">
+    <script src="app.js"></script>
+    <script>
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-        const today = new Date();
-        const lastMonth = new Date();
+        var today = new Date();
+        var lastMonth = new Date();
         lastMonth.setMonth(lastMonth.getMonth() - 1);
         document.getElementById('fromDate').value = lastMonth.toISOString().split('T')[0];
         document.getElementById('toDate').value = today.toISOString().split('T')[0];

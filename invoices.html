@@ -2,7 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e293b">
     <title>Zero POS - الفواتير</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -16,7 +17,7 @@
         .invoice-totals { text-align: left; margin-top: 20px; }
         .invoice-totals div { margin: 10px 0; font-size: 16px; }
         .invoice-totals .grand-total { font-size: 20px; font-weight: bold; border-top: 2px solid var(--dark); padding-top: 10px; }
-        @media print { .no-print { display: none !important; } body { background: white; } }
+        @media print { .sidebar, .top-bar, .no-print, .modal-overlay { display: none !important; } body { background: white; } .main-content { margin: 0 !important; padding: 0 !important; } }
     </style>
 </head>
 <body>
@@ -54,14 +55,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">🧾 الفواتير</h2>
-                    <div style="display:flex; gap:10px;">
-                        <input type="date" id="filterDate" class="form-control" style="width:auto;">
-                        <button class="btn btn-secondary" onclick="filterInvoices()">🔍 بحث</button>
-                        <a href="sales.html" class="btn btn-primary"><span>➕</span> فاتورة جديدة</a>
-                    </div>
-                </div>
+                <div class="card-header"><h2 class="card-title">🧾 الفواتير</h2><div style="display:flex; gap:10px;"><input type="date" id="filterDate" class="form-control" style="width:auto;"><button class="btn btn-secondary" onclick="filterInvoices()">🔍 بحث</button><a href="sales.html" class="btn btn-primary"><span>➕</span> فاتورة جديدة</a></div></div>
                 <div class="table-container">
                     <table class="data-table">
                         <thead><tr><th>رقم الفاتورة</th><th>العميل</th><th>المنتجات</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th><th>بواسطة</th><th>الإجراءات</th></tr></thead>
@@ -76,16 +70,11 @@
         <div class="modal" style="max-width:900px;">
             <div class="modal-header no-print"><h3 class="modal-title">🧾 عرض الفاتورة</h3><button class="modal-close" onclick="closeModal('invoiceViewModal')">×</button></div>
             <div class="modal-body" id="invoiceContent"></div>
-            <div class="modal-footer no-print">
-                <button class="btn btn-secondary modal-cancel" onclick="closeModal('invoiceViewModal')">إغلاق</button>
-                <button class="btn btn-primary" onclick="window.print()">🖨️ طباعة</button>
-            </div>
+            <div class="modal-footer no-print"><button class="btn btn-secondary modal-cancel" onclick="closeModal('invoiceViewModal')">إغلاق</button><button class="btn btn-primary" onclick="window.print()">🖨️ طباعة</button></div>
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
-    <script type="module">
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    </script>
+    <script src="app.js"></script>
+    <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });</script>
 </body>
 </html>

@@ -1583,3 +1583,107 @@ window.addEventListener('beforeunload', function(e) {
         e.returnValue = 'لديك منتجات في السلة، هل تريد المغادرة؟';
     }
 });
+) {
+            window.currentUser = userData;
+            loadCompanyData();
+
+            document.querySelectorAll('.current-user-name').forEach(function(el) { el.textContent = userData.name; });
+            document.querySelectorAll('.current-user-role').forEach(function(el) { el.textContent = userData.role; });
+
+            var sessionStart = storageGet('sessionStart');
+            if (sessionStart) { sessionStartTime = parseInt(sessionStart); startSessionTimer(); }
+
+            if (userData.role === 'مدير') {
+                document.querySelectorAll('.admin-only').forEach(function(el) { el.style.display = 'flex'; });
+            } else {
+                document.querySelectorAll('.admin-only').forEach(function(el) { el.style.display = 'none'; });
+            }
+
+            if (currentPage === 'users.html') loadUsers();
+            if (currentPage === 'products.html') loadProducts();
+            if (currentPage === 'sales.html') loadProductsForSale();
+            if (currentPage === 'inventory.html') loadInventory();
+            if (currentPage === 'invoices.html') loadInvoices();
+            if (currentPage === 'dashboard.html') loadDashboardStats();
+            if (currentPage === 'reports.html') {
+                var today = new Date();
+                var lastMonth = new Date();
+                lastMonth.setMonth(lastMonth.getMonth() - 1);
+                var fromDateEl = document.getElementById('fromDate');
+                var toDateEl = document.getElementById('toDate');
+                if (fromDateEl) fromDateEl.value = lastMonth.toISOString().split('T')[0];
+                if (toDateEl) toDateEl.value = today.toISOString().split('T')[0];
+                generateReport();
+            }
+        } else {
+            if (publicPages.indexOf(currentPage) === -1) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Event listeners
+        var companyForm = document.getElementById('companyRegisterForm');
+        if (companyForm) companyForm.addEventListener('submit', registerCompany);
+
+        var loginForm = document.getElementById('loginForm');
+        if (loginForm) loginForm.addEventListener('submit', login);
+
+        var addUserForm = document.getElementById('addUserForm');
+        if (addUserForm) addUserForm.addEventListener('submit', addNewUser);
+
+        var addProductForm = document.getElementById('addProductForm');
+        if (addProductForm) addProductForm.addEventListener('submit', addProduct);
+
+        var addStockForm = document.getElementById('addStockForm');
+        if (addStockForm) addStockForm.addEventListener('submit', addStock);
+
+        document.querySelectorAll('.logout-btn').forEach(function(btn) {
+            btn.addEventListener('click', logout);
+        });
+
+        document.querySelectorAll('.modal-close, .modal-cancel').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var modal = this.closest('.modal-overlay');
+                if (modal) modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(function(modal) { modal.classList.remove('active'); });
+                document.body.style.overflow = '';
+            }
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (cart && cart.length > 0) {
+                e.preventDefault();
+                e.returnValue = 'لديك منتجات في السلة، هل تريد المغادرة؟';
+            }
+        });
+
+        // Date display
+        var currentDateEl = document.getElementById('currentDate');
+        if (currentDateEl) {
+            currentDateEl.textContent = new Date().toLocaleDateString('ar-EG', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();

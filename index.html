@@ -14,53 +14,23 @@
     <title>Zero POS - تسجيل الدخول</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .auth-container { padding: 20px; margin: 10px; }
-            .company-logo-display { width: 80px; height: 80px; }
-            .company-name-display { font-size: 20px; }
-            .form-control { padding: 10px 12px; font-size: 16px; }
-            .btn { padding: 12px 20px; font-size: 16px; }
+        @media (max-width: 480px) {
+            .auth-container { padding: 20px 15px; margin: 10px; border-radius: 15px; }
+            .company-logo-display { width: 70px; height: 70px; }
+            .company-name-display { font-size: 18px; }
+            .form-control { padding: 12px; font-size: 16px; }
+            .btn { padding: 14px 20px; font-size: 16px; min-height: 48px; }
         }
-
-        /* Touch optimizations */
-        .btn, .form-control, .menu-item, .product-card, .category-tab {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        /* Prevent text selection on UI elements */
-        .btn, .menu-item, .product-card, .stat-card, .category-tab {
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        /* Install prompt */
         .install-prompt {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            display: none;
-            align-items: center;
-            gap: 15px;
-            z-index: 9999;
-            direction: rtl;
-            max-width: 90%;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: white; padding: 15px 25px; border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); display: none; align-items: center;
+            gap: 15px; z-index: 9999; direction: rtl; max-width: 90%;
         }
         .install-prompt.show { display: flex; }
         .install-prompt button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            white-space: nowrap;
+            background: var(--primary); color: white; border: none;
+            padding: 8px 20px; border-radius: 8px; cursor: pointer; white-space: nowrap;
         }
     </style>
 </head>
@@ -104,68 +74,66 @@
         </div>
     </div>
 
-    <!-- Install Prompt -->
     <div class="install-prompt" id="installPrompt">
         <span>📱 تثبيت Zero POS على جهازك</span>
         <button onclick="installApp()">تثبيت</button>
         <button onclick="dismissInstall()" style="background:var(--secondary);">لاحقاً</button>
     </div>
 
-    <script type="module" src="app.js"></script>
-    <script type="module">
-        import { localDB, registerServiceWorker } from './db.js';
-
-        // Register service worker
-        registerServiceWorker();
-
+    <script src="app.js"></script>
+    <script>
         // Check if company exists
-        async function checkFirstTime() {
-            try {
-                const companies = await localDB.getAll('companies');
-                if (companies.length === 0) {
-                    document.getElementById('firstTimeSetup').style.display = 'block';
-                } else {
-                    const company = companies[0];
-                    if (company.logo) {
-                        document.getElementById('loginLogo').src = company.logo;
-                        document.getElementById('loginLogo').style.display = 'block';
-                    }
-                    document.getElementById('loginCompanyName').textContent = company.name;
-                }
-            } catch (error) {
-                console.log('First time setup check:', error);
+        (function() {
+            function checkFirstTime() {
+                var request = indexedDB.open('ZeroPOS', 2);
+                request.onsuccess = function() {
+                    var db = request.result;
+                    var tx = db.transaction('companies', 'readonly');
+                    var store = tx.objectStore('companies');
+                    var getAll = store.getAll();
+                    getAll.onsuccess = function() {
+                        var companies = getAll.result || [];
+                        if (companies.length === 0) {
+                            document.getElementById('firstTimeSetup').style.display = 'block';
+                        } else {
+                            var company = companies[0];
+                            if (company.logo) {
+                                document.getElementById('loginLogo').src = company.logo;
+                                document.getElementById('loginLogo').style.display = 'block';
+                            }
+                            document.getElementById('loginCompanyName').textContent = company.name;
+                        }
+                        db.close();
+                    };
+                };
             }
-        }
 
-        checkFirstTime();
+            checkFirstTime();
 
-        // Install prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installPrompt').classList.add('show');
-        });
+            // Install prompt
+            var deferredPrompt;
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferredPrompt = e;
+                document.getElementById('installPrompt').classList.add('show');
+            });
 
-        window.installApp = async function() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    document.getElementById('installPrompt').classList.remove('show');
+            window.installApp = function() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(function(choiceResult) {
+                        if (choiceResult.outcome === 'accepted') {
+                            document.getElementById('installPrompt').classList.remove('show');
+                        }
+                        deferredPrompt = null;
+                    });
                 }
-                deferredPrompt = null;
-            }
-        };
+            };
 
-        window.dismissInstall = function() {
-            document.getElementById('installPrompt').classList.remove('show');
-        };
-
-        // Check if already installed
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            document.getElementById('installPrompt').style.display = 'none';
-        }
+            window.dismissInstall = function() {
+                document.getElementById('installPrompt').classList.remove('show');
+            };
+        })();
     </script>
 </body>
 </html>
