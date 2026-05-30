@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e293b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Zero POS">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Zero POS">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <title>Zero POS - تسجيل الدخول</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .auth-container { padding: 20px; margin: 10px; }
+            .company-logo-display { width: 80px; height: 80px; }
+            .company-name-display { font-size: 20px; }
+            .form-control { padding: 10px 12px; font-size: 16px; }
+            .btn { padding: 12px 20px; font-size: 16px; }
+        }
+
+        /* Touch optimizations */
+        .btn, .form-control, .menu-item, .product-card, .category-tab {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        /* Prevent text selection on UI elements */
+        .btn, .menu-item, .product-card, .stat-card, .category-tab {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Install prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            direction: rtl;
+            max-width: 90%;
+        }
+        .install-prompt.show { display: flex; }
+        .install-prompt button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-container">
+            <div id="companyDisplay">
+                <img id="loginLogo" class="company-logo-display" src="" alt="شعار الشركة" style="display:none;">
+                <h1 id="loginCompanyName" class="company-name-display">Zero POS</h1>
+            </div>
+
+            <h2 style="text-align:center; margin-bottom:30px; color:var(--dark);">تسجيل الدخول</h2>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="admin@zero.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="••••••" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:25px;">
+                    <span>🔐</span> تسجيل الدخول
+                </button>
+            </form>
+
+            <div id="firstTimeSetup" style="text-align:center; margin-top:20px; display:none;">
+                <p>لم يتم تسجيل شركة بعد؟</p>
+                <a href="register.html" class="btn btn-secondary btn-block" style="margin-top:10px;">
+                    <span>🏢</span> تسجيل شركة جديدة
+                </a>
+            </div>
+
+            <div style="text-align:center; margin-top:20px; color:var(--secondary); font-size:14px;">
+                <p>المدير فقط يمكنه تسجيل الدخول هنا</p>
+                <p>المستخدمين يتم إضافتهم من لوحة التحكم</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <span>📱 تثبيت Zero POS على جهازك</span>
+        <button onclick="installApp()">تثبيت</button>
+        <button onclick="dismissInstall()" style="background:var(--secondary);">لاحقاً</button>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { localDB, registerServiceWorker } from './db.js';
+
+        // Register service worker
+        registerServiceWorker();
+
+        // Check if company exists
+        async function checkFirstTime() {
+            try {
+                const companies = await localDB.getAll('companies');
+                if (companies.length === 0) {
+                    document.getElementById('firstTimeSetup').style.display = 'block';
+                } else {
+                    const company = companies[0];
+                    if (company.logo) {
+                        document.getElementById('loginLogo').src = company.logo;
+                        document.getElementById('loginLogo').style.display = 'block';
+                    }
+                    document.getElementById('loginCompanyName').textContent = company.name;
+                }
+            } catch (error) {
+                console.log('First time setup check:', error);
+            }
+        }
+
+        checkFirstTime();
+
+        // Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').classList.add('show');
+        });
+
+        window.installApp = async function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('installPrompt').classList.remove('show');
+                }
+                deferredPrompt = null;
+            }
+        };
+
+        window.dismissInstall = function() {
+            document.getElementById('installPrompt').classList.remove('show');
+        };
+
+        // Check if already installed
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            document.getElementById('installPrompt').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

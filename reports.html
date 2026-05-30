@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - التقارير</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .report-card { background: white; border-radius: 15px; padding: 25px; box-shadow: var(--shadow); margin-bottom: 20px; }
+        .report-filters { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .chart-container { height: 300px; margin-top: 20px; position: relative; }
+        .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 250px; padding: 20px; border-bottom: 2px solid var(--border); border-right: 2px solid var(--border); }
+        .bar { flex: 1; background: var(--primary); border-radius: 5px 5px 0 0; min-width: 30px; position: relative; transition: all 0.3s; }
+        .bar:hover { opacity: 0.8; }
+        .bar-label { position: absolute; bottom: -25px; right: 50%; transform: translateX(50%); font-size: 12px; white-space: nowrap; }
+        .bar-value { position: absolute; top: -25px; right: 50%; transform: translateX(50%); font-size: 12px; font-weight: bold; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .summary-item { background: var(--light); padding: 15px; border-radius: 10px; text-align: center; }
+        .summary-item h4 { color: var(--secondary); font-size: 14px; margin-bottom: 5px; }
+        .summary-item p { font-size: 24px; font-weight: bold; color: var(--dark); }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item"><span class="menu-icon">🏠</span><span>الرئيسية</span></a>
+                <a href="sales.html" class="menu-item"><span class="menu-icon">🛒</span><span>المبيعات</span></a>
+                <a href="products.html" class="menu-item"><span class="menu-icon">📦</span><span>المنتجات</span></a>
+                <a href="inventory.html" class="menu-item"><span class="menu-icon">🏭</span><span>المخازن</span></a>
+                <a href="invoices.html" class="menu-item"><span class="menu-icon">🧾</span><span>الفواتير</span></a>
+                <a href="reports.html" class="menu-item active"><span class="menu-icon">📊</span><span>التقارير</span></a>
+                <a href="users.html" class="menu-item admin-only"><span class="menu-icon">👥</span><span>المستخدمين</span></a>
+                <a href="#" class="menu-item" onclick="logout(); return false;"><span class="menu-icon">🚪</span><span>تسجيل الخروج</span></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);"><span id="currentDate"></span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h2 class="card-title">📊 فلاتر التقارير</h2></div>
+                <div class="report-filters">
+                    <div class="form-group" style="flex:1; min-width:200px;"><label>من تاريخ</label><input type="date" id="fromDate" class="form-control"></div>
+                    <div class="form-group" style="flex:1; min-width:200px;"><label>إلى تاريخ</label><input type="date" id="toDate" class="form-control"></div>
+                    <div class="form-group" style="flex:1; min-width:200px;">
+                        <label>نوع التقرير</label>
+                        <select id="reportType" class="form-control">
+                            <option value="sales">📈 مبيعات</option>
+                            <option value="products">📦 منتجات</option>
+                            <option value="inventory">🏭 مخزون</option>
+                            <option value="users">👥 مستخدمين</option>
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:flex-end;"><button class="btn btn-primary" onclick="generateReport()" style="height:fit-content;"><span>📊</span> عرض التقرير</button></div>
+                </div>
+            </div>
+
+            <div id="salesReport" class="report-card">
+                <h3 style="margin-bottom:20px;">📈 تقرير المبيعات</h3>
+                <div class="summary-grid">
+                    <div class="summary-item"><h4>إجمالي المبيعات</h4><p id="totalSales">0 ج.م</p></div>
+                    <div class="summary-item"><h4>عدد الفواتير</h4><p id="totalInvoices">0</p></div>
+                    <div class="summary-item"><h4>متوسط الفاتورة</h4><p id="avgInvoice">0 ج.م</p></div>
+                    <div class="summary-item"><h4>إجمالي الخصومات</h4><p id="totalDiscounts">0 ج.م</p></div>
+                </div>
+                <div class="chart-container">
+                    <h4 style="margin-bottom:15px;">المبيعات اليومية</h4>
+                    <div class="bar-chart" id="salesChart"><div style="text-align:center; width:100%; color:var(--secondary);">اختر نطاق تاريخ لعرض البيانات</div></div>
+                </div>
+            </div>
+
+            <div id="productsReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">📦 تقرير المنتجات الأكثر مبيعاً</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>#</th><th>المنتج</th><th>الكمية المباعة</th><th>إجمالي المبيعات</th><th>نسبة من الإجمالي</th></tr></thead>
+                        <tbody id="topProductsTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="inventoryReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">🏭 تقرير المخزون</h3>
+                <div class="summary-grid">
+                    <div class="summary-item"><h4>قيمة المخزون</h4><p id="inventoryValue">0 ج.م</p></div>
+                    <div class="summary-item"><h4>المنتجات المنخفضة</h4><p id="lowStockCount">0</p></div>
+                    <div class="summary-item"><h4>إجمالي الأصناف</h4><p id="totalProducts">0</p></div>
+                </div>
+            </div>
+
+            <div id="usersReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">👥 تقرير أداء المستخدمين</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>المستخدم</th><th>الدور</th><th>عدد الفواتير</th><th>إجمالي المبيعات</th><th>متوسط الفاتورة</th></tr></thead>
+                        <tbody id="usersReportTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        const today = new Date();
+        const lastMonth = new Date();
+        lastMonth.setMonth(lastMonth.getMonth() - 1);
+        document.getElementById('fromDate').value = lastMonth.toISOString().split('T')[0];
+        document.getElementById('toDate').value = today.toISOString().split('T')[0];
+    </script>
+</body>
+</html>

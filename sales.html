@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - المبيعات</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pos-container { display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; max-height: 70vh; overflow-y: auto; }
+        .product-card { background: white; border-radius: 15px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid var(--border); }
+        .product-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .product-card h4 { font-size: 14px; margin: 10px 0; color: var(--dark); }
+        .product-card .price { color: var(--primary); font-weight: bold; font-size: 18px; }
+        .product-card .stock { font-size: 12px; color: var(--secondary); }
+        .cart-section { background: white; border-radius: 15px; padding: 20px; box-shadow: var(--shadow); height: fit-content; position: sticky; top: 20px; }
+        .cart-total { font-size: 24px; font-weight: bold; color: var(--primary); text-align: center; padding: 20px 0; border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); margin: 20px 0; }
+        .search-box { margin-bottom: 20px; }
+        .category-tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; }
+        .category-tab { padding: 8px 20px; border-radius: 20px; background: white; border: 2px solid var(--border); cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+        .category-tab.active, .category-tab:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        @media (max-width: 768px) { .pos-container { grid-template-columns: 1fr; } .cart-section { position: static; } }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item"><span class="menu-icon">🏠</span><span>الرئيسية</span></a>
+                <a href="sales.html" class="menu-item active"><span class="menu-icon">🛒</span><span>المبيعات</span></a>
+                <a href="products.html" class="menu-item"><span class="menu-icon">📦</span><span>المنتجات</span></a>
+                <a href="inventory.html" class="menu-item"><span class="menu-icon">🏭</span><span>المخازن</span></a>
+                <a href="invoices.html" class="menu-item"><span class="menu-icon">🧾</span><span>الفواتير</span></a>
+                <a href="reports.html" class="menu-item"><span class="menu-icon">📊</span><span>التقارير</span></a>
+                <a href="users.html" class="menu-item admin-only"><span class="menu-icon">👥</span><span>المستخدمين</span></a>
+                <a href="#" class="menu-item" onclick="logout(); return false;"><span class="menu-icon">🚪</span><span>تسجيل الخروج</span></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);"><span id="currentDate"></span></div>
+                </div>
+            </div>
+
+            <div class="pos-container">
+                <div>
+                    <div class="search-box">
+                        <input type="text" id="productSearch" class="form-control" placeholder="🔍 البحث عن منتج..." oninput="filterProducts()">
+                    </div>
+                    <div class="category-tabs" id="categoryTabs">
+                        <div class="category-tab active" onclick="filterByCategory('all')">الكل</div>
+                    </div>
+                    <div class="products-grid" id="productsGrid"></div>
+                </div>
+
+                <div class="cart-section">
+                    <h3 style="margin-bottom:20px; text-align:center;">🛒 السلة</h3>
+                    <div class="form-group">
+                        <label>اسم العميل</label>
+                        <input type="text" id="customerName" class="form-control" placeholder="عميل نقدي">
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table" style="font-size:14px;">
+                            <thead><tr><th>المنتج</th><th>السعر</th><th>الكمية</th><th>الإجمالي</th><th></th></tr></thead>
+                            <tbody id="cartItems"><tr><td colspan="5" style="text-align:center; color:var(--secondary);">السلة فارغة</td></tr></tbody>
+                        </table>
+                    </div>
+                    <div class="form-group" style="margin-top:15px;">
+                        <label>الخصم</label>
+                        <input type="number" id="saleDiscount" class="form-control" value="0" min="0" step="0.01">
+                    </div>
+                    <div class="cart-total">
+                        <div>الإجمالي: <span id="cartTotal">0.00</span> ج.م</div>
+                    </div>
+                    <button class="btn btn-success btn-block" onclick="completeSale()" style="font-size:18px; padding:15px;"><span>💰</span> إتمام البيع</button>
+                    <button class="btn btn-danger btn-block" onclick="clearCart()" style="margin-top:10px;"><span>🗑️</span> إفراغ السلة</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>

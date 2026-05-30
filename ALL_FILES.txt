@@ -1,0 +1,3832 @@
+
+================================================================================
+📄 firebase-config.js
+================================================================================
+
+// Firebase Configuration
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA-GvFzuzj-S4xtDjsKgMe3kf2yD6GEikc",
+    authDomain: "zero-ec5ea.firebaseapp.com",
+    projectId: "zero-ec5ea",
+    storageBucket: "zero-ec5ea.firebasestorage.app",
+    messagingSenderId: "752169579365",
+    appId: "1:752169579365:web:9eb1d14aa4019ae9d3e78c",
+    measurementId: "G-T2SLC1SKK8"
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+
+
+================================================================================
+📄 styles.css
+================================================================================
+
+/* Zero POS System - Main Stylesheet */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #64748b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+}
+
+/* Login & Register Pages */
+.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.auth-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+}
+
+.company-logo-display {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+    border: 3px solid var(--primary);
+}
+
+.company-name-display {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-warning {
+    background: var(--warning);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background: var(--dark);
+    color: white;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--primary);
+}
+
+.sidebar-company {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    gap: 12px;
+}
+
+.menu-item:hover, .menu-item.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-right: 3px solid var(--primary);
+}
+
+.menu-icon {
+    font-size: 20px;
+    width: 24px;
+}
+
+.main-content {
+    flex: 1;
+    margin-right: 280px;
+    padding: 20px;
+}
+
+/* Top Bar */
+.top-bar {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.session-timer {
+    background: var(--warning);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.stat-icon.blue { background: rgba(37,99,235,0.1); color: var(--primary); }
+.stat-icon.green { background: rgba(16,185,129,0.1); color: var(--success); }
+.stat-icon.red { background: rgba(239,68,68,0.1); color: var(--danger); }
+.stat-icon.orange { background: rgba(245,158,11,0.1); color: var(--warning); }
+
+.stat-details h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.stat-details p {
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: var(--light);
+    padding: 15px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--secondary);
+    border-bottom: 2px solid var(--border);
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table tr:hover {
+    background: var(--light);
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-success { background: rgba(16,185,129,0.1); color: var(--success); }
+.badge-danger { background: rgba(239,68,68,0.1); color: var(--danger); }
+.badge-warning { background: rgba(245,158,11,0.1); color: var(--warning); }
+.badge-info { background: rgba(37,99,235,0.1); color: var(--primary); }
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: all 0.3s;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal-header {
+    padding: 25px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    padding: 20px 25px;
+    border-top: 2px solid var(--border);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Grid System */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+/* Alerts */
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success { background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid var(--success); }
+.alert-danger { background: rgba(239,68,68,0.1); color: var(--danger); border: 1px solid var(--danger); }
+.alert-warning { background: rgba(245,158,11,0.1); color: var(--warning); border: 1px solid var(--warning); }
+
+/* Maintenance Mode */
+.maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+    text-align: center;
+}
+
+.maintenance-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.maintenance-content p {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+/* Image Upload */
+.image-upload {
+    border: 2px dashed var(--border);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.image-upload:hover {
+    border-color: var(--primary);
+    background: rgba(37,99,235,0.05);
+}
+
+.image-upload img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.3s;
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-right: 0;
+    }
+    .stats-grid { grid-template-columns: 1fr; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar, .top-bar, .no-print {
+        display: none !important;
+    }
+    .main-content {
+        margin: 0 !important;
+    }
+}
+
+
+
+================================================================================
+📄 app.js
+================================================================================
+
+// Zero POS System - Main Application Logic
+import { auth, db, storage } from './firebase-config.js';
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut,
+    onAuthStateChanged,
+    sendEmailVerification
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+    collection, doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, 
+    query, where, orderBy, Timestamp, onSnapshot, addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { 
+    ref, uploadBytes, getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+// Global State
+let currentUser = null;
+let companyData = null;
+let sessionStartTime = null;
+let sessionTimer = null;
+let maintenanceMode = false;
+
+// ==================== UTILITY FUNCTIONS ====================
+
+function showAlert(message, type = 'success') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} animate-fade-in`;
+    alertDiv.innerHTML = `
+        <span>${type === 'success' ? '✅' : type === 'danger' ? '❌' : '⚠️'}</span>
+        <span>${message}</span>
+    `;
+    document.body.insertBefore(alertDiv, document.body.firstChild);
+    setTimeout(() => alertDiv.remove(), 5000);
+}
+
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('ar-EG');
+}
+
+function formatTime(date) {
+    return new Date(date).toLocaleTimeString('ar-EG');
+}
+
+function generateActivationCode() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function validatePassword(password) {
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const isLongEnough = password.length >= 10;
+    return hasUpper && hasLower && hasNumber && isLongEnough;
+}
+
+function getInitials(name) {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+}
+
+// ==================== SESSION MANAGEMENT ====================
+
+function startSessionTimer() {
+    sessionStartTime = Date.now();
+    updateSessionDisplay();
+    sessionTimer = setInterval(updateSessionDisplay, 1000);
+}
+
+function updateSessionDisplay() {
+    const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+    const hours = Math.floor(elapsed / 3600);
+    const minutes = Math.floor((elapsed % 3600) / 60);
+    const seconds = elapsed % 60;
+    const timerEl = document.getElementById('sessionTimer');
+    if (timerEl) {
+        timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    }
+}
+
+function stopSessionTimer() {
+    if (sessionTimer) {
+        clearInterval(sessionTimer);
+        sessionTimer = null;
+    }
+}
+
+// ==================== COMPANY REGISTRATION ====================
+
+async function registerCompany(e) {
+    e.preventDefault();
+
+    const companyName = document.getElementById('companyName').value;
+    const taxNumber = document.getElementById('taxNumber').value;
+    const landline = document.getElementById('landline').value;
+    const mobile = document.getElementById('mobile').value;
+    const serviceNumber = document.getElementById('serviceNumber').value;
+    const adminEmail = document.getElementById('adminEmail').value;
+    const adminPassword = document.getElementById('adminPassword').value;
+    const logoFile = document.getElementById('companyLogo').files[0];
+
+    if (!companyName || !adminEmail || !adminPassword) {
+        showAlert('الرجاء ملء جميع الحقول الإلزامية', 'danger');
+        return;
+    }
+
+    try {
+        // Create admin user
+        const userCredential = await createUserWithEmailAndPassword(auth, adminEmail, adminPassword);
+        const user = userCredential.user;
+
+        // Upload logo if exists
+        let logoUrl = '';
+        if (logoFile) {
+            const logoRef = ref(storage, `companies/${user.uid}/logo`);
+            await uploadBytes(logoRef, logoFile);
+            logoUrl = await getDownloadURL(logoRef);
+        }
+
+        // Save company data
+        const companyData = {
+            name: companyName,
+            taxNumber: taxNumber || '',
+            phones: {
+                landline: landline || '',
+                mobile: mobile || '',
+                service: serviceNumber || ''
+            },
+            logo: logoUrl,
+            adminId: user.uid,
+            createdAt: Timestamp.now(),
+            maintenanceMode: false
+        };
+
+        await setDoc(doc(db, 'companies', user.uid), companyData);
+
+        // Save admin user data
+        await setDoc(doc(db, 'users', user.uid), {
+            uid: user.uid,
+            name: 'المدير',
+            email: adminEmail,
+            role: 'مدير',
+            permissions: ['عرض', 'تعديل', 'إضافة', 'حذف', 'طباعة'],
+            isActive: true,
+            createdAt: Timestamp.now(),
+            expiryDate: null, // Admin never expires
+            companyId: user.uid
+        });
+
+        showAlert('تم تسجيل الشركة بنجاح!', 'success');
+        setTimeout(() => window.location.href = 'index.html', 2000);
+
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+// ==================== USER REGISTRATION (Manager Only) ====================
+
+async function addNewUser(e) {
+    e.preventDefault();
+
+    if (!currentUser || currentUser.role !== 'مدير') {
+        showAlert('غير مصرح لك بإضافة مستخدمين', 'danger');
+        return;
+    }
+
+    const name = document.getElementById('userName').value;
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
+    const role = document.getElementById('userRole').value;
+    const expiryDays = parseInt(document.getElementById('expiryDays').value) || 30;
+
+    if (!validatePassword(password)) {
+        showAlert('كلمة المرور يجب أن تحتوي على حرف كبير وحرف صغير ورقم وأن لا تقل عن 10 أحرف', 'danger');
+        return;
+    }
+
+    try {
+        // Create user in Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const newUser = userCredential.user;
+
+        // Calculate expiry date
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + expiryDays);
+
+        // Set permissions based on role
+        let permissions = [];
+        if (role === 'مدير') {
+            permissions = ['عرض', 'تعديل', 'إضافة', 'حذف', 'طباعة'];
+        } else if (role === 'مشرف') {
+            permissions = ['عرض', 'تعديل', 'إضافة', 'طباعة'];
+        } else if (role === 'كاشير') {
+            permissions = ['عرض', 'إضافة', 'طباعة'];
+        } else {
+            permissions = ['عرض'];
+        }
+
+        // Save user data
+        await setDoc(doc(db, 'users', newUser.uid), {
+            uid: newUser.uid,
+            name: name,
+            email: email,
+            role: role,
+            permissions: permissions,
+            isActive: true,
+            createdAt: Timestamp.now(),
+            expiryDate: Timestamp.fromDate(expiryDate),
+            companyId: currentUser.companyId,
+            createdBy: currentUser.uid
+        });
+
+        showAlert(`تم إضافة المستخدم ${name} بنجاح!`, 'success');
+        closeModal('addUserModal');
+        loadUsers();
+
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+// ==================== LOGIN ====================
+
+async function login(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Get user data from Firestore
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        if (!userDoc.exists()) {
+            showAlert('بيانات المستخدم غير موجودة', 'danger');
+            return;
+        }
+
+        const userData = userDoc.data();
+
+        // Check if account is active
+        if (!userData.isActive) {
+            showAlert('الحساب معطل، يرجى التواصل مع المدير', 'danger');
+            await signOut(auth);
+            return;
+        }
+
+        // Check expiry date for non-admin users
+        if (userData.role !== 'مدير' && userData.expiryDate) {
+            const expiryDate = userData.expiryDate.toDate();
+            if (expiryDate < new Date()) {
+                showAlert('صلاحية الحساب منتهية، يرجى التواصل مع المدير', 'danger');
+                await signOut(auth);
+                return;
+            }
+        }
+
+        // Check maintenance mode
+        const companyDoc = await getDoc(doc(db, 'companies', userData.companyId));
+        if (companyDoc.exists() && companyDoc.data().maintenanceMode && userData.role !== 'مدير') {
+            showAlert('النظام تحت الصيانة حالياً', 'warning');
+            await signOut(auth);
+            return;
+        }
+
+        // Update last login
+        await updateDoc(doc(db, 'users', user.uid), {
+            lastLogin: Timestamp.now()
+        });
+
+        currentUser = userData;
+
+        // Save session
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        localStorage.setItem('sessionStart', Date.now().toString());
+
+        showAlert(`مرحباً ${userData.name}!`, 'success');
+        window.location.href = 'dashboard.html';
+
+    } catch (error) {
+        showAlert('خطأ في تسجيل الدخول: ' + error.message, 'danger');
+    }
+}
+
+// ==================== LOAD COMPANY DATA ====================
+
+async function loadCompanyData() {
+    try {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+        if (!userData) return;
+
+        const companyDoc = await getDoc(doc(db, 'companies', userData.companyId));
+        if (companyDoc.exists()) {
+            companyData = companyDoc.data();
+
+            // Update UI with company data
+            document.querySelectorAll('.company-name-display').forEach(el => {
+                el.textContent = companyData.name;
+            });
+
+            document.querySelectorAll('.company-logo-display').forEach(el => {
+                if (companyData.logo) el.src = companyData.logo;
+            });
+
+            // Update sidebar
+            const sidebarLogo = document.getElementById('sidebarLogo');
+            const sidebarCompany = document.getElementById('sidebarCompany');
+            if (sidebarLogo && companyData.logo) sidebarLogo.src = companyData.logo;
+            if (sidebarCompany) sidebarCompany.textContent = companyData.name;
+        }
+    } catch (error) {
+        console.error('Error loading company data:', error);
+    }
+}
+
+// ==================== USER MANAGEMENT ====================
+
+async function loadUsers() {
+    try {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+        if (!userData || userData.role !== 'مدير') return;
+
+        const q = query(collection(db, 'users'), where('companyId', '==', userData.companyId));
+        const querySnapshot = await getDocs(q);
+
+        const tbody = document.getElementById('usersTableBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        querySnapshot.forEach(doc => {
+            const user = doc.data();
+            const createdAt = user.createdAt ? formatDate(user.createdAt.toDate()) : '-';
+            const expiryDate = user.expiryDate ? formatDate(user.expiryDate.toDate()) : 'دائم';
+            const hoursOnline = user.lastLogin ? 
+                Math.floor((Date.now() - user.lastLogin.toDate().getTime()) / (1000 * 60 * 60)) : 0;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><strong>${user.name}</strong></td>
+                <td>${user.email}</td>
+                <td><span class="badge badge-${user.role === 'مدير' ? 'danger' : user.role === 'مشرف' ? 'warning' : 'info'}">${user.role}</span></td>
+                <td>${hoursOnline} ساعة</td>
+                <td>${createdAt}</td>
+                <td>${expiryDate}</td>
+                <td>
+                    <span class="badge badge-${user.isActive ? 'success' : 'danger'}">${user.isActive ? 'نشط' : 'معطل'}</span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editUser('${user.uid}')">تعديل</button>
+                    <button class="btn btn-sm btn-secondary" onclick="extendUser('${user.uid}')">+ أيام</button>
+                    <button class="btn btn-sm btn-${user.isActive ? 'danger' : 'success'}" onclick="toggleUser('${user.uid}', ${!user.isActive})">${user.isActive ? 'تعطيل' : 'تفعيل'}</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.uid}')">حذف</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+    } catch (error) {
+        console.error('Error loading users:', error);
+    }
+}
+
+async function toggleUser(uid, active) {
+    try {
+        await updateDoc(doc(db, 'users', uid), { isActive: active });
+        showAlert(active ? 'تم تفعيل المستخدم' : 'تم تعطيل المستخدم', 'success');
+        loadUsers();
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+async function deleteUser(uid) {
+    if (!confirm('هل أنت متأكد من حذف هذا المستخدم؟')) return;
+
+    try {
+        await deleteDoc(doc(db, 'users', uid));
+        showAlert('تم حذف المستخدم بنجاح', 'success');
+        loadUsers();
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+async function extendUser(uid) {
+    const days = prompt('أدخل عدد الأيام لإضافتها:');
+    if (!days || isNaN(days)) return;
+
+    try {
+        const userDoc = await getDoc(doc(db, 'users', uid));
+        const userData = userDoc.data();
+
+        let currentExpiry = userData.expiryDate ? userData.expiryDate.toDate() : new Date();
+        currentExpiry.setDate(currentExpiry.getDate() + parseInt(days));
+
+        await updateDoc(doc(db, 'users', uid), {
+            expiryDate: Timestamp.fromDate(currentExpiry)
+        });
+
+        showAlert(`تم إضافة ${days} يوم بنجاح`, 'success');
+        loadUsers();
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+// ==================== MAINTENANCE MODE ====================
+
+async function toggleMaintenance() {
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+    if (!userData || userData.role !== 'مدير') {
+        showAlert('غير مصرح لك', 'danger');
+        return;
+    }
+
+    try {
+        const companyDoc = await getDoc(doc(db, 'companies', userData.companyId));
+        const currentMode = companyDoc.data().maintenanceMode || false;
+
+        await updateDoc(doc(db, 'companies', userData.companyId), {
+            maintenanceMode: !currentMode
+        });
+
+        showAlert(!currentMode ? 'تم تفعيل وضع الصيانة' : 'تم إلغاء وضع الصيانة', 'success');
+
+        if (!currentMode) {
+            // Force logout all users except admin
+            // In real app, you'd use Cloud Functions for this
+            alert('سيتم تسجيل خروج جميع المستخدمين!');
+        }
+
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+// ==================== PRODUCTS ====================
+
+async function addProduct(e) {
+    e.preventDefault();
+
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+    if (!userData) return;
+
+    const product = {
+        name: document.getElementById('productName').value,
+        code: document.getElementById('productCode').value,
+        category: document.getElementById('productCategory').value,
+        purchasePrice: parseFloat(document.getElementById('purchasePrice').value),
+        salePrice: parseFloat(document.getElementById('salePrice').value),
+        quantity: parseInt(document.getElementById('productQuantity').value),
+        minQuantity: parseInt(document.getElementById('minQuantity').value) || 5,
+        unit: document.getElementById('productUnit').value,
+        description: document.getElementById('productDescription').value,
+        companyId: userData.companyId,
+        createdAt: Timestamp.now(),
+        createdBy: userData.uid
+    };
+
+    try {
+        await addDoc(collection(db, 'products'), product);
+        showAlert('تم إضافة المنتج بنجاح', 'success');
+        closeModal('addProductModal');
+        loadProducts();
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+async function loadProducts() {
+    try {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+        if (!userData) return;
+
+        const q = query(collection(db, 'products'), where('companyId', '==', userData.companyId));
+        const querySnapshot = await getDocs(q);
+
+        const tbody = document.getElementById('productsTableBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        querySnapshot.forEach(doc => {
+            const product = doc.data();
+            const profit = product.salePrice - product.purchasePrice;
+            const isLowStock = product.quantity <= product.minQuantity;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${product.code}</td>
+                <td><strong>${product.name}</strong></td>
+                <td>${product.category}</td>
+                <td>${product.purchasePrice.toFixed(2)}</td>
+                <td>${product.salePrice.toFixed(2)}</td>
+                <td><span class="badge badge-${isLowStock ? 'danger' : 'success'}">${product.quantity} ${product.unit}</span></td>
+                <td>${profit.toFixed(2)}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" onclick="editProduct('${doc.id}')">تعديل</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteProduct('${doc.id}')">حذف</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
+}
+
+// ==================== SALES ====================
+
+let cart = [];
+
+function addToCart() {
+    const productSelect = document.getElementById('saleProduct');
+    const quantity = parseInt(document.getElementById('saleQuantity').value);
+
+    if (!productSelect.value || !quantity) {
+        showAlert('اختر منتج وأدخل الكمية', 'warning');
+        return;
+    }
+
+    const option = productSelect.options[productSelect.selectedIndex];
+    const price = parseFloat(option.dataset.price);
+    const name = option.text;
+
+    const existingItem = cart.find(item => item.id === productSelect.value);
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            id: productSelect.value,
+            name: name,
+            price: price,
+            quantity: quantity,
+            total: price * quantity
+        });
+    }
+
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const tbody = document.getElementById('cartItems');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.total;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price.toFixed(2)}</td>
+            <td>${item.quantity}</td>
+            <td>${item.total.toFixed(2)}</td>
+            <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">×</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById('cartTotal').textContent = total.toFixed(2);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+}
+
+async function completeSale() {
+    if (cart.length === 0) {
+        showAlert('السلة فارغة', 'warning');
+        return;
+    }
+
+    const userData = JSON.parse(localStorage.getItem('currentUser'));
+    const customerName = document.getElementById('customerName').value || 'عميل نقدي';
+    const discount = parseFloat(document.getElementById('saleDiscount').value) || 0;
+    const total = parseFloat(document.getElementById('cartTotal').textContent);
+    const finalTotal = total - discount;
+
+    try {
+        const invoiceRef = await addDoc(collection(db, 'invoices'), {
+            invoiceNumber: 'INV-' + Date.now(),
+            customerName: customerName,
+            items: cart,
+            subtotal: total,
+            discount: discount,
+            total: finalTotal,
+            companyId: userData.companyId,
+            createdBy: userData.uid,
+            createdByName: userData.name,
+            createdAt: Timestamp.now(),
+            status: 'مكتملة'
+        });
+
+        // Update product quantities
+        for (const item of cart) {
+            const productRef = doc(db, 'products', item.id);
+            const productDoc = await getDoc(productRef);
+            if (productDoc.exists()) {
+                const currentQty = productDoc.data().quantity;
+                await updateDoc(productRef, { quantity: currentQty - item.quantity });
+            }
+        }
+
+        showAlert('تم إتمام البيع بنجاح!', 'success');
+        cart = [];
+        updateCartDisplay();
+        document.getElementById('customerName').value = '';
+        document.getElementById('saleDiscount').value = '';
+
+    } catch (error) {
+        showAlert('خطأ: ' + error.message, 'danger');
+    }
+}
+
+// ==================== INVOICES ====================
+
+async function loadInvoices() {
+    try {
+        const userData = JSON.parse(localStorage.getItem('currentUser'));
+        if (!userData) return;
+
+        const q = query(
+            collection(db, 'invoices'), 
+            where('companyId', '==', userData.companyId),
+            orderBy('createdAt', 'desc')
+        );
+        const querySnapshot = await getDocs(q);
+
+        const tbody = document.getElementById('invoicesTableBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        querySnapshot.forEach(doc => {
+            const invoice = doc.data();
+            const date = invoice.createdAt ? formatDate(invoice.createdAt.toDate()) : '-';
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${invoice.invoiceNumber}</td>
+                <td>${invoice.customerName}</td>
+                <td>${invoice.items.length} منتجات</td>
+                <td>${invoice.total.toFixed(2)}</td>
+                <td><span class="badge badge-${invoice.status === 'مكتملة' ? 'success' : 'warning'}">${invoice.status}</span></td>
+                <td>${date}</td>
+                <td>${invoice.createdByName || '-'}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="printInvoice('${doc.id}')">طباعة</button>
+                    <button class="btn btn-sm btn-info" onclick="viewInvoice('${doc.id}')">عرض</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+    } catch (error) {
+        console.error('Error loading invoices:', error);
+    }
+}
+
+// ==================== LOGOUT ====================
+
+async function logout() {
+    try {
+        stopSessionTimer();
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('sessionStart');
+        await signOut(auth);
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Logout error:', error);
+    }
+}
+
+// ==================== MODAL FUNCTIONS ====================
+
+function openModal(modalId) {
+    document.getElementById(modalId).classList.add('active');
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('active');
+}
+
+// ==================== INITIALIZATION ====================
+
+function init() {
+    // Check auth state
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (userData) {
+                currentUser = userData;
+                loadCompanyData();
+
+                // Update user display
+                document.querySelectorAll('.current-user-name').forEach(el => {
+                    el.textContent = userData.name;
+                });
+                document.querySelectorAll('.current-user-role').forEach(el => {
+                    el.textContent = userData.role;
+                });
+
+                // Start session timer
+                const sessionStart = localStorage.getItem('sessionStart');
+                if (sessionStart) {
+                    sessionStartTime = parseInt(sessionStart);
+                    startSessionTimer();
+                }
+
+                // Show/hide admin-only elements
+                if (userData.role === 'مدير') {
+                    document.querySelectorAll('.admin-only').forEach(el => {
+                        el.style.display = 'flex';
+                    });
+                } else {
+                    document.querySelectorAll('.admin-only').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                }
+            }
+        } else {
+            // Not logged in, redirect to login if not on login/register page
+            const publicPages = ['index.html', 'register.html', ''];
+            const currentPage = window.location.pathname.split('/').pop();
+            if (!publicPages.includes(currentPage)) {
+                window.location.href = 'index.html';
+            }
+        }
+    });
+
+    // Setup event listeners
+    setupEventListeners();
+}
+
+function setupEventListeners() {
+    // Company registration form
+    const companyForm = document.getElementById('companyRegisterForm');
+    if (companyForm) companyForm.addEventListener('submit', registerCompany);
+
+    // Login form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) loginForm.addEventListener('submit', login);
+
+    // Add user form
+    const addUserForm = document.getElementById('addUserForm');
+    if (addUserForm) addUserForm.addEventListener('submit', addNewUser);
+
+    // Add product form
+    const addProductForm = document.getElementById('addProductForm');
+    if (addProductForm) addProductForm.addEventListener('submit', addProduct);
+
+    // Logout buttons
+    document.querySelectorAll('.logout-btn').forEach(btn => {
+        btn.addEventListener('click', logout);
+    });
+
+    // Modal close buttons
+    document.querySelectorAll('.modal-close, .modal-cancel').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modal = this.closest('.modal-overlay');
+            if (modal) modal.classList.remove('active');
+        });
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', init);
+
+// Export functions for global access
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.toggleUser = toggleUser;
+window.deleteUser = deleteUser;
+window.extendUser = extendUser;
+window.toggleMaintenance = toggleMaintenance;
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.completeSale = completeSale;
+window.logout = logout;
+
+
+
+================================================================================
+📄 index.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - تسجيل الدخول</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-container">
+            <div id="companyDisplay">
+                <img id="loginLogo" class="company-logo-display" src="" alt="شعار الشركة" style="display:none;">
+                <h1 id="loginCompanyName" class="company-name-display">Zero POS</h1>
+            </div>
+
+            <h2 style="text-align:center; margin-bottom:30px; color:var(--dark);">تسجيل الدخول</h2>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="admin@zero.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:25px;">
+                    <span>🔐</span> تسجيل الدخول
+                </button>
+            </form>
+
+            <div id="firstTimeSetup" style="text-align:center; margin-top:20px; display:none;">
+                <p>لم يتم تسجيل شركة بعد؟</p>
+                <a href="register.html" class="btn btn-secondary btn-block" style="margin-top:10px;">
+                    <span>🏢</span> تسجيل شركة جديدة
+                </a>
+            </div>
+
+            <div style="text-align:center; margin-top:20px; color:var(--secondary); font-size:14px;">
+                <p>المدير فقط يمكنه تسجيل الدخول هنا</p>
+                <p>المستخدمين يتم إضافتهم من لوحة التحكم</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Check if any company exists
+        async function checkFirstTime() {
+            try {
+                const companiesSnapshot = await getDocs(collection(db, 'companies'));
+                if (companiesSnapshot.empty) {
+                    document.getElementById('firstTimeSetup').style.display = 'block';
+                } else {
+                    // Show first company logo/name
+                    const company = companiesSnapshot.docs[0].data();
+                    if (company.logo) {
+                        document.getElementById('loginLogo').src = company.logo;
+                        document.getElementById('loginLogo').style.display = 'block';
+                    }
+                    document.getElementById('loginCompanyName').textContent = company.name;
+                }
+            } catch (error) {
+                console.log('First time setup check:', error);
+            }
+        }
+
+        checkFirstTime();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 register.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - تسجيل الشركة</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-container" style="max-width:700px;">
+            <h1 style="text-align:center; margin-bottom:30px; color:var(--primary);">🏢 تسجيل الشركة</h1>
+
+            <form id="companyRegisterForm">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>اسم الشركة *</label>
+                        <input type="text" id="companyName" class="form-control" placeholder="اسم الشركة" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الرقم الضريبي</label>
+                        <input type="text" id="taxNumber" class="form-control" placeholder="الرقم الضريبي إن وجد">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>شعار الشركة</label>
+                    <div class="image-upload" onclick="document.getElementById('companyLogo').click()">
+                        <input type="file" id="companyLogo" accept="image/*" style="display:none;" onchange="previewLogo(this)">
+                        <div id="logoPreviewArea">
+                            <span style="font-size:40px;">📷</span>
+                            <p>اضغط لاختيار صورة الشعار</p>
+                        </div>
+                        <img id="logoPreview" style="display:none; max-width:200px; margin-top:15px;">
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label>التليفون الأرضي</label>
+                        <input type="tel" id="landline" class="form-control" placeholder="02-xxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label>الموبايل</label>
+                        <input type="tel" id="mobile" class="form-control" placeholder="01xxxxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label>خدمة العملاء / الديليفري</label>
+                        <input type="tel" id="serviceNumber" class="form-control" placeholder="رقم الخدمة">
+                    </div>
+                </div>
+
+                <hr style="margin:30px 0; border-color:var(--border);">
+
+                <h3 style="color:var(--primary); margin-bottom:20px;">👤 بيانات المدير</h3>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>البريد الإلكتروني الافتراضي *</label>
+                        <input type="email" id="adminEmail" class="form-control" value="admin@zero.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>كلمة المرور *</label>
+                        <input type="password" id="adminPassword" class="form-control" value="123456" required>
+                        <small style="color:var(--secondary);">الافتراضي: 123456</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:25px;">
+                    <span>✅</span> تسجيل الشركة والمدير
+                </button>
+            </form>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="index.html" style="color:var(--primary); text-decoration:none;">← العودة لتسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                    document.getElementById('logoPreview').style.display = 'block';
+                    document.getElementById('logoPreviewArea').style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 dashboard.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">💰</div>
+                    <div class="stat-details">
+                        <h3 id="todaySales">0</h3>
+                        <p>مبيعات اليوم</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">📦</div>
+                    <div class="stat-details">
+                        <h3 id="totalProducts">0</h3>
+                        <p>إجمالي المنتجات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">⚠️</div>
+                    <div class="stat-details">
+                        <h3 id="lowStock">0</h3>
+                        <p>منتجات منخفضة</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">🧾</div>
+                    <div class="stat-details">
+                        <h3 id="todayInvoices">0</h3>
+                        <p>فواتير اليوم</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">⚡ إجراءات سريعة</h2>
+                </div>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <a href="sales.html" class="btn btn-primary">
+                        <span>🛒</span> عملية بيع جديدة
+                    </a>
+                    <a href="products.html" class="btn btn-success">
+                        <span>➕</span> إضافة منتج
+                    </a>
+                    <a href="invoices.html" class="btn btn-secondary">
+                        <span>🧾</span> عرض الفواتير
+                    </a>
+                    <button class="btn btn-warning admin-only" onclick="toggleMaintenance()" style="display:none;">
+                        <span>🔧</span> وضع الصيانة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Invoices -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📋 أحدث الفواتير</h2>
+                    <a href="invoices.html" style="color:var(--primary);">عرض الكل →</a>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الفاتورة</th>
+                                <th>العميل</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentInvoicesBody">
+                            <tr>
+                                <td colspan="5" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, orderBy, limit, getDocs, Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Update date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Load dashboard stats
+        async function loadDashboardStats() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) return;
+
+            try {
+                // Today's sales
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                const invoicesQuery = query(
+                    collection(db, 'invoices'),
+                    where('companyId', '==', userData.companyId),
+                    where('createdAt', '>=', Timestamp.fromDate(today))
+                );
+                const invoicesSnapshot = await getDocs(invoicesQuery);
+
+                let todayTotal = 0;
+                invoicesSnapshot.forEach(doc => {
+                    todayTotal += doc.data().total;
+                });
+
+                document.getElementById('todaySales').textContent = todayTotal.toFixed(2) + ' ج.م';
+                document.getElementById('todayInvoices').textContent = invoicesSnapshot.size;
+
+                // Total products
+                const productsQuery = query(collection(db, 'products'), where('companyId', '==', userData.companyId));
+                const productsSnapshot = await getDocs(productsQuery);
+                document.getElementById('totalProducts').textContent = productsSnapshot.size;
+
+                // Low stock
+                let lowStockCount = 0;
+                productsSnapshot.forEach(doc => {
+                    const product = doc.data();
+                    if (product.quantity <= (product.minQuantity || 5)) lowStockCount++;
+                });
+                document.getElementById('lowStock').textContent = lowStockCount;
+
+                // Recent invoices
+                const recentQuery = query(
+                    collection(db, 'invoices'),
+                    where('companyId', '==', userData.companyId),
+                    orderBy('createdAt', 'desc'),
+                    limit(5)
+                );
+                const recentSnapshot = await getDocs(recentQuery);
+
+                const tbody = document.getElementById('recentInvoicesBody');
+                tbody.innerHTML = '';
+
+                if (recentSnapshot.empty) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">لا توجد فواتير</td></tr>';
+                    return;
+                }
+
+                recentSnapshot.forEach(doc => {
+                    const inv = doc.data();
+                    const date = inv.createdAt ? new Date(inv.createdAt.toDate()).toLocaleDateString('ar-EG') : '-';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${inv.invoiceNumber}</strong></td>
+                            <td>${inv.customerName}</td>
+                            <td>${inv.total.toFixed(2)} ج.م</td>
+                            <td><span class="badge badge-success">${inv.status}</span></td>
+                            <td>${date}</td>
+                        </tr>
+                    `;
+                });
+
+            } catch (error) {
+                console.error('Dashboard stats error:', error);
+            }
+        }
+
+        loadDashboardStats();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 users.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - المستخدمين</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item active">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">👥 إدارة المستخدمين</h2>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-warning" onclick="toggleMaintenance()">
+                            <span>🔧</span> وضع الصيانة
+                        </button>
+                        <button class="btn btn-primary" onclick="openModal('addUserModal')">
+                            <span>➕</span> إضافة مستخدم
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>البريد</th>
+                                <th>الدور</th>
+                                <th>ساعات الاتصال</th>
+                                <th>تاريخ الإنشاء</th>
+                                <th>تاريخ الانتهاء</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td colspan="8" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal-overlay" id="addUserModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ إضافة مستخدم جديد</h3>
+                <button class="modal-close" onclick="closeModal('addUserModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label>اسم المستخدم *</label>
+                        <input type="text" id="userName" class="form-control" placeholder="الاسم الكامل" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>البريد الإلكتروني *</label>
+                        <input type="email" id="userEmail" class="form-control" placeholder="email@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>كلمة المرور *</label>
+                        <input type="password" id="userPassword" class="form-control" placeholder="حرف كبير + حرف صغير + 10 أحرف على الأقل" required>
+                        <small style="color:var(--secondary);">يجب أن تحتوي على حرف كبير وحرف صغير ورقم وأن لا تقل عن 10 أحرف</small>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>نوع المستخدم *</label>
+                            <select id="userRole" class="form-control" required>
+                                <option value="كاشير">🖥️ كاشير</option>
+                                <option value="مستخدم">👤 مستخدم</option>
+                                <option value="مشرف">🛡️ مشرف</option>
+                                <option value="مدير">👑 مدير</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>مدة التفعيل (يوم)</label>
+                            <input type="number" id="expiryDays" class="form-control" value="30" min="1">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="padding:20px 0 0 0; border-top:1px solid var(--border);">
+                        <button type="button" class="btn btn-secondary modal-cancel" onclick="closeModal('addUserModal')">إلغاء</button>
+                        <button type="submit" class="btn btn-primary">حفظ المستخدم</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Check admin access
+        async function checkAccess() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData || userData.role !== 'مدير') {
+                alert('غير مصرح لك بالوصول لهذه الصفحة');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+        }
+
+        checkAccess();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 products.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - المنتجات</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item active">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Management -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📦 المنتجات</h2>
+                    <button class="btn btn-primary" onclick="openModal('addProductModal')">
+                        <span>➕</span> إضافة منتج
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الكود</th>
+                                <th>الاسم</th>
+                                <th>التصنيف</th>
+                                <th>سعر الشراء</th>
+                                <th>سعر البيع</th>
+                                <th>الكمية</th>
+                                <th>الربح</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="8" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ إضافة منتج جديد</h3>
+                <button class="modal-close" onclick="closeModal('addProductModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>اسم المنتج *</label>
+                            <input type="text" id="productName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>كود المنتج *</label>
+                            <input type="text" id="productCode" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>التصنيف *</label>
+                            <input type="text" id="productCategory" class="form-control" placeholder="مثال: إلكترونيات" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الوحدة</label>
+                            <select id="productUnit" class="form-control">
+                                <option value="قطعة">قطعة</option>
+                                <option value="كيلو">كيلو</option>
+                                <option value="لتر">لتر</option>
+                                <option value="متر">متر</option>
+                                <option value="علبة">علبة</option>
+                                <option value="كرتونة">كرتونة</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label>سعر الشراء *</label>
+                            <input type="number" id="purchasePrice" class="form-control" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>سعر البيع *</label>
+                            <input type="number" id="salePrice" class="form-control" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الكمية الحالية *</label>
+                            <input type="number" id="productQuantity" class="form-control" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>الحد الأدنى للتنبيه</label>
+                            <input type="number" id="minQuantity" class="form-control" value="5" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>وصف المنتج</label>
+                        <textarea id="productDescription" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="modal-footer" style="padding:20px 0 0 0; border-top:1px solid var(--border);">
+                        <button type="button" class="btn btn-secondary modal-cancel" onclick="closeModal('addProductModal')">إلغاء</button>
+                        <button type="submit" class="btn btn-primary">حفظ المنتج</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Load products on page load
+        window.editProduct = async function(id) {
+            alert('سيتم فتح نموذج التعديل - قيد التطوير');
+        };
+
+        window.deleteProduct = async function(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+
+            try {
+                await deleteDoc(doc(db, 'products', id));
+                showAlert('تم حذف المنتج بنجاح', 'success');
+                loadProducts();
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'danger');
+            }
+        };
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 sales.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - المبيعات</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pos-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--border);
+        }
+        .product-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-card h4 {
+            font-size: 14px;
+            margin: 10px 0;
+            color: var(--dark);
+        }
+        .product-card .price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .product-card .stock {
+            font-size: 12px;
+            color: var(--secondary);
+        }
+        .cart-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        .cart-total {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            padding: 20px 0;
+            border-top: 2px solid var(--border);
+            border-bottom: 2px solid var(--border);
+            margin: 20px 0;
+        }
+        .search-box {
+            margin-bottom: 20px;
+        }
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        .category-tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .category-tab.active, .category-tab:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        @media (max-width: 768px) {
+            .pos-container {
+                grid-template-columns: 1fr;
+            }
+            .cart-section {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item active">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POS System -->
+            <div class="pos-container">
+                <!-- Products Section -->
+                <div>
+                    <div class="search-box">
+                        <input type="text" id="productSearch" class="form-control" placeholder="🔍 البحث عن منتج..." oninput="filterProducts()">
+                    </div>
+
+                    <div class="category-tabs" id="categoryTabs">
+                        <div class="category-tab active" onclick="filterByCategory('all')">الكل</div>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Cart Section -->
+                <div class="cart-section">
+                    <h3 style="margin-bottom:20px; text-align:center;">🛒 السلة</h3>
+
+                    <div class="form-group">
+                        <label>اسم العميل</label>
+                        <input type="text" id="customerName" class="form-control" placeholder="عميل نقدي">
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" style="font-size:14px;">
+                            <thead>
+                                <tr>
+                                    <th>المنتج</th>
+                                    <th>السعر</th>
+                                    <th>الكمية</th>
+                                    <th>الإجمالي</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartItems">
+                                <tr>
+                                    <td colspan="5" style="text-align:center; color:var(--secondary);">السلة فارغة</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="form-group" style="margin-top:15px;">
+                        <label>الخصم</label>
+                        <input type="number" id="saleDiscount" class="form-control" value="0" min="0" step="0.01">
+                    </div>
+
+                    <div class="cart-total">
+                        <div>الإجمالي: <span id="cartTotal">0.00</span> ج.م</div>
+                    </div>
+
+                    <button class="btn btn-success btn-block" onclick="completeSale()" style="font-size:18px; padding:15px;">
+                        <span>💰</span> إتمام البيع
+                    </button>
+                    <button class="btn btn-danger btn-block" onclick="clearCart()" style="margin-top:10px;">
+                        <span>🗑️</span> إفراغ السلة
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        let allProducts = [];
+        let cart = [];
+
+        // Load products
+        async function loadProducts() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) return;
+
+            try {
+                const q = query(collection(db, 'products'), where('companyId', '==', userData.companyId));
+                const snapshot = await getDocs(q);
+
+                allProducts = [];
+                const categories = new Set();
+
+                snapshot.forEach(doc => {
+                    const product = { id: doc.id, ...doc.data() };
+                    allProducts.push(product);
+                    categories.add(product.category);
+                });
+
+                // Update category tabs
+                const tabsContainer = document.getElementById('categoryTabs');
+                tabsContainer.innerHTML = '<div class="category-tab active" onclick="filterByCategory('all')">الكل</div>';
+                categories.forEach(cat => {
+                    tabsContainer.innerHTML += `<div class="category-tab" onclick="filterByCategory('${cat}')">${cat}</div>`;
+                });
+
+                displayProducts(allProducts);
+
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            if (products.length === 0) {
+                grid.innerHTML = '<div style="text-align:center; color:var(--secondary); grid-column:1/-1;">لا توجد منتجات</div>';
+                return;
+            }
+
+            products.forEach(product => {
+                const isLowStock = product.quantity <= (product.minQuantity || 5);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div style="font-size:40px;">📦</div>
+                    <h4>${product.name}</h4>
+                    <div class="price">${product.salePrice.toFixed(2)} ج.م</div>
+                    <div class="stock" style="color:${isLowStock ? 'var(--danger)' : 'var(--secondary)'};">
+                        ${isLowStock ? '⚠️ ' : ''}المخزون: ${product.quantity} ${product.unit}
+                    </div>
+                `;
+                card.onclick = () => addToCartFromProduct(product);
+                grid.appendChild(card);
+            });
+        }
+
+        window.filterProducts = function() {
+            const search = document.getElementById('productSearch').value.toLowerCase();
+            const filtered = allProducts.filter(p => 
+                p.name.toLowerCase().includes(search) || 
+                p.code.toLowerCase().includes(search)
+            );
+            displayProducts(filtered);
+        };
+
+        window.filterByCategory = function(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                displayProducts(allProducts);
+            } else {
+                displayProducts(allProducts.filter(p => p.category === category));
+            }
+        };
+
+        window.addToCartFromProduct = function(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                if (existingItem.quantity < product.quantity) {
+                    existingItem.quantity++;
+                    existingItem.total = existingItem.quantity * existingItem.price;
+                } else {
+                    showAlert('الكمية المتاحة غير كافية', 'warning');
+                    return;
+                }
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.salePrice,
+                    quantity: 1,
+                    total: product.salePrice
+                });
+            }
+            updateCartDisplay();
+        };
+
+        window.updateCartDisplay = function() {
+            const tbody = document.getElementById('cartItems');
+            tbody.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">السلة فارغة</td></tr>';
+                document.getElementById('cartTotal').textContent = '0.00';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                total += item.total;
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.price.toFixed(2)}</td>
+                        <td>
+                            <button class="btn btn-sm btn-secondary" onclick="changeQty(${index}, -1)">-</button>
+                            ${item.quantity}
+                            <button class="btn btn-sm btn-secondary" onclick="changeQty(${index}, 1)">+</button>
+                        </td>
+                        <td>${item.total.toFixed(2)}</td>
+                        <td><button class="btn btn-sm btn-danger" onclick="removeCartItem(${index})">×</button></td>
+                    </tr>
+                `;
+            });
+
+            const discount = parseFloat(document.getElementById('saleDiscount').value) || 0;
+            document.getElementById('cartTotal').textContent = (total - discount).toFixed(2);
+        };
+
+        window.changeQty = function(index, change) {
+            const item = cart[index];
+            const product = allProducts.find(p => p.id === item.id);
+
+            if (change > 0 && item.quantity >= product.quantity) {
+                showAlert('الكمية المتاحة غير كافية', 'warning');
+                return;
+            }
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                cart.splice(index, 1);
+            } else {
+                item.total = item.quantity * item.price;
+            }
+            updateCartDisplay();
+        };
+
+        window.removeCartItem = function(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        };
+
+        window.clearCart = function() {
+            cart = [];
+            updateCartDisplay();
+            document.getElementById('customerName').value = '';
+            document.getElementById('saleDiscount').value = '0';
+        };
+
+        window.completeSale = async function() {
+            if (cart.length === 0) {
+                showAlert('السلة فارغة', 'warning');
+                return;
+            }
+
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            const customerName = document.getElementById('customerName').value || 'عميل نقدي';
+            const discount = parseFloat(document.getElementById('saleDiscount').value) || 0;
+
+            let subtotal = 0;
+            cart.forEach(item => subtotal += item.total);
+            const total = subtotal - discount;
+
+            try {
+                const { collection, addDoc, doc, getDoc, updateDoc, Timestamp } = 
+                    await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+
+                const invoiceRef = await addDoc(collection(db, 'invoices'), {
+                    invoiceNumber: 'INV-' + Date.now(),
+                    customerName: customerName,
+                    items: cart.map(item => ({...item})),
+                    subtotal: subtotal,
+                    discount: discount,
+                    total: total,
+                    companyId: userData.companyId,
+                    createdBy: userData.uid,
+                    createdByName: userData.name,
+                    createdAt: Timestamp.now(),
+                    status: 'مكتملة'
+                });
+
+                // Update stock
+                for (const item of cart) {
+                    const productRef = doc(db, 'products', item.id);
+                    const productDoc = await getDoc(productRef);
+                    if (productDoc.exists()) {
+                        const currentQty = productDoc.data().quantity;
+                        await updateDoc(productRef, { quantity: currentQty - item.quantity });
+                    }
+                }
+
+                showAlert('تم إتمام البيع بنجاح!', 'success');
+
+                // Print invoice
+                if (confirm('هل تريد طباعة الفاتورة؟')) {
+                    printInvoice(invoiceRef.id);
+                }
+
+                clearCart();
+                loadProducts(); // Refresh stock display
+
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'danger');
+            }
+        };
+
+        window.printInvoice = async function(invoiceId) {
+            alert('سيتم فتح نافذة الطباعة - قيد التطوير');
+        };
+
+        // Load products on page load
+        loadProducts();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 inventory.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - المخازن</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .inventory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        .stock-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .stock-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+        .stock-bar-fill.green { background: var(--success); }
+        .stock-bar-fill.yellow { background: var(--warning); }
+        .stock-bar-fill.red { background: var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item active">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">📦</div>
+                    <div class="stat-details">
+                        <h3 id="totalItems">0</h3>
+                        <p>إجمالي الأصناف</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">💰</div>
+                    <div class="stat-details">
+                        <h3 id="inventoryValue">0</h3>
+                        <p>قيمة المخزون</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">⚠️</div>
+                    <div class="stat-details">
+                        <h3 id="lowStockItems">0</h3>
+                        <p>أصناف منخفضة</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">📊</div>
+                    <div class="stat-details">
+                        <h3 id="categoriesCount">0</h3>
+                        <p>التصنيفات</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock Management -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🏭 إدارة المخزون</h2>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-success" onclick="openModal('addStockModal')">
+                            <span>➕</span> إضافة مخزون
+                        </button>
+                        <button class="btn btn-warning" onclick="openModal('adjustStockModal')">
+                            <span>⚖️</span> تعديل مخزون
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>الكود</th>
+                                <th>الاسم</th>
+                                <th>التصنيف</th>
+                                <th>الكمية</th>
+                                <th>الحد الأدنى</th>
+                                <th>الحالة</th>
+                                <th>آخر تحديث</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <tr>
+                                <td colspan="7" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Low Stock Alert -->
+            <div class="card" style="border-right: 4px solid var(--danger);">
+                <div class="card-header">
+                    <h2 class="card-title" style="color:var(--danger);">⚠️ تنبيهات المخزون المنخفض</h2>
+                </div>
+                <div id="lowStockAlert" class="inventory-grid">
+                    <!-- Low stock items will appear here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Stock Modal -->
+    <div class="modal-overlay" id="addStockModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">➕ إضافة مخزون</h3>
+                <button class="modal-close" onclick="closeModal('addStockModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="addStockForm">
+                    <div class="form-group">
+                        <label>اختر المنتج *</label>
+                        <select id="stockProduct" class="form-control" required>
+                            <option value="">-- اختر منتج --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الكمية المراد إضافتها *</label>
+                        <input type="number" id="addQuantity" class="form-control" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ملاحظات</label>
+                        <textarea id="stockNotes" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="modal-footer" style="padding:20px 0 0 0; border-top:1px solid var(--border);">
+                        <button type="button" class="btn btn-secondary modal-cancel" onclick="closeModal('addStockModal')">إلغاء</button>
+                        <button type="submit" class="btn btn-success">إضافة المخزون</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, getDocs, doc, updateDoc, Timestamp, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        let allProducts = [];
+
+        async function loadInventory() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) return;
+
+            try {
+                const q = query(collection(db, 'products'), where('companyId', '==', userData.companyId));
+                const snapshot = await getDocs(q);
+
+                allProducts = [];
+                let totalValue = 0;
+                let lowStockCount = 0;
+                const categories = new Set();
+
+                const tbody = document.getElementById('inventoryTableBody');
+                tbody.innerHTML = '';
+
+                const lowStockContainer = document.getElementById('lowStockAlert');
+                lowStockContainer.innerHTML = '';
+
+                snapshot.forEach(docSnap => {
+                    const product = { id: docSnap.id, ...docSnap.data() };
+                    allProducts.push(product);
+
+                    const value = product.purchasePrice * product.quantity;
+                    totalValue += value;
+                    categories.add(product.category);
+
+                    const isLow = product.quantity <= (product.minQuantity || 5);
+                    if (isLow) lowStockCount++;
+
+                    const stockPercent = Math.min((product.quantity / (product.minQuantity * 3 || 15)) * 100, 100);
+                    const barColor = stockPercent > 50 ? 'green' : stockPercent > 25 ? 'yellow' : 'red';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${product.code}</td>
+                            <td><strong>${product.name}</strong></td>
+                            <td>${product.category}</td>
+                            <td>${product.quantity} ${product.unit}</td>
+                            <td>${product.minQuantity || 5}</td>
+                            <td>
+                                <span class="badge badge-${isLow ? 'danger' : 'success'}">
+                                    ${isLow ? 'منخفض ⚠️' : 'متوفر ✅'}
+                                </span>
+                            </td>
+                            <td>${product.updatedAt ? new Date(product.updatedAt.toDate()).toLocaleDateString('ar-EG') : '-'}</td>
+                        </tr>
+                    `;
+
+                    if (isLow) {
+                        lowStockContainer.innerHTML += `
+                            <div class="inventory-card" style="border-right: 4px solid var(--danger);">
+                                <div style="display:flex; justify-content:space-between; align-items:center;">
+                                    <div>
+                                        <h4>${product.name}</h4>
+                                        <p style="color:var(--secondary); font-size:14px;">الكود: ${product.code}</p>
+                                    </div>
+                                    <div style="text-align:center;">
+                                        <div style="font-size:28px; font-weight:bold; color:var(--danger);">${product.quantity}</div>
+                                        <div style="font-size:12px;">متبقي</div>
+                                    </div>
+                                </div>
+                                <div class="stock-bar">
+                                    <div class="stock-bar-fill ${barColor}" style="width:${stockPercent}%"></div>
+                                </div>
+                                <div style="margin-top:10px; display:flex; justify-content:space-between; font-size:12px; color:var(--secondary);">
+                                    <span>الحد الأدنى: ${product.minQuantity || 5}</span>
+                                    <span>النسبة: ${stockPercent.toFixed(0)}%</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                // Update stats
+                document.getElementById('totalItems').textContent = allProducts.length;
+                document.getElementById('inventoryValue').textContent = totalValue.toFixed(2) + ' ج.م';
+                document.getElementById('lowStockItems').textContent = lowStockCount;
+                document.getElementById('categoriesCount').textContent = categories.size;
+
+                if (lowStockCount === 0) {
+                    lowStockContainer.innerHTML = '<div style="text-align:center; color:var(--success); padding:20px;">✅ جميع المنتجات متوفرة بكميات جيدة</div>';
+                }
+
+                // Populate stock product select
+                const select = document.getElementById('stockProduct');
+                select.innerHTML = '<option value="">-- اختر منتج --</option>';
+                allProducts.forEach(p => {
+                    select.innerHTML += `<option value="${p.id}">${p.name} (متوفر: ${p.quantity})</option>`;
+                });
+
+            } catch (error) {
+                console.error('Error loading inventory:', error);
+            }
+        }
+
+        // Add stock form
+        document.getElementById('addStockForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const productId = document.getElementById('stockProduct').value;
+            const quantity = parseInt(document.getElementById('addQuantity').value);
+            const notes = document.getElementById('stockNotes').value;
+
+            if (!productId || !quantity) {
+                showAlert('الرجاء اختيار منتج وإدخال الكمية', 'warning');
+                return;
+            }
+
+            try {
+                const product = allProducts.find(p => p.id === productId);
+                const newQty = product.quantity + quantity;
+
+                await updateDoc(doc(db, 'products', productId), {
+                    quantity: newQty,
+                    updatedAt: Timestamp.now()
+                });
+
+                // Add stock movement record
+                const userData = JSON.parse(localStorage.getItem('currentUser'));
+                await addDoc(collection(db, 'stockMovements'), {
+                    productId: productId,
+                    productName: product.name,
+                    type: 'إضافة',
+                    quantity: quantity,
+                    previousQty: product.quantity,
+                    newQty: newQty,
+                    notes: notes,
+                    companyId: userData.companyId,
+                    createdBy: userData.uid,
+                    createdAt: Timestamp.now()
+                });
+
+                showAlert(`تم إضافة ${quantity} ${product.unit} إلى ${product.name}`, 'success');
+                closeModal('addStockModal');
+                document.getElementById('addStockForm').reset();
+                loadInventory();
+
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'danger');
+            }
+        });
+
+        loadInventory();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 invoices.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - الفواتير</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .invoice-print {
+            background: white;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .invoice-header {
+            text-align: center;
+            border-bottom: 2px solid var(--dark);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .invoice-header img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .invoice-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .invoice-table th, .invoice-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+        .invoice-table th {
+            background: #f8f9fa;
+        }
+        .invoice-totals {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .invoice-totals div {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .invoice-totals .grand-total {
+            font-size: 20px;
+            font-weight: bold;
+            border-top: 2px solid var(--dark);
+            padding-top: 10px;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item active">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoices List -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🧾 الفواتير</h2>
+                    <div style="display:flex; gap:10px;">
+                        <input type="date" id="filterDate" class="form-control" style="width:auto;">
+                        <button class="btn btn-secondary" onclick="filterInvoices()">🔍 بحث</button>
+                        <a href="sales.html" class="btn btn-primary">
+                            <span>➕</span> فاتورة جديدة
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الفاتورة</th>
+                                <th>العميل</th>
+                                <th>المنتجات</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                                <th>بواسطة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoicesTableBody">
+                            <tr>
+                                <td colspan="8" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Invoice View Modal -->
+    <div class="modal-overlay" id="invoiceViewModal">
+        <div class="modal" style="max-width:900px;">
+            <div class="modal-header no-print">
+                <h3 class="modal-title">🧾 عرض الفاتورة</h3>
+                <button class="modal-close" onclick="closeModal('invoiceViewModal')">×</button>
+            </div>
+            <div class="modal-body" id="invoiceContent">
+                <!-- Invoice content will be loaded here -->
+            </div>
+            <div class="modal-footer no-print">
+                <button class="btn btn-secondary modal-cancel" onclick="closeModal('invoiceViewModal')">إغلاق</button>
+                <button class="btn btn-primary" onclick="printCurrentInvoice()">🖨️ طباعة</button>
+                <button class="btn btn-success" onclick="downloadPDF()">📄 PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, orderBy, getDocs, doc, getDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        let currentInvoiceData = null;
+        let companyData = null;
+
+        async function loadInvoices() {
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) return;
+
+            try {
+                // Load company data
+                const companyDoc = await getDoc(doc(db, 'companies', userData.companyId));
+                if (companyDoc.exists()) companyData = companyDoc.data();
+
+                const q = query(
+                    collection(db, 'invoices'), 
+                    where('companyId', '==', userData.companyId),
+                    orderBy('createdAt', 'desc')
+                );
+                const snapshot = await getDocs(q);
+
+                const tbody = document.getElementById('invoicesTableBody');
+                tbody.innerHTML = '';
+
+                if (snapshot.empty) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">لا توجد فواتير</td></tr>';
+                    return;
+                }
+
+                snapshot.forEach(docSnap => {
+                    const inv = docSnap.data();
+                    const date = inv.createdAt ? new Date(inv.createdAt.toDate()).toLocaleDateString('ar-EG') : '-';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${inv.invoiceNumber}</strong></td>
+                            <td>${inv.customerName}</td>
+                            <td>${inv.items ? inv.items.length : 0} منتجات</td>
+                            <td>${inv.total ? inv.total.toFixed(2) : '0.00'} ج.م</td>
+                            <td><span class="badge badge-${inv.status === 'مكتملة' ? 'success' : 'warning'}">${inv.status || 'مكتملة'}</span></td>
+                            <td>${date}</td>
+                            <td>${inv.createdByName || '-'}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewInvoice('${docSnap.id}')">👁️ عرض</button>
+                                <button class="btn btn-sm btn-info" onclick="printInvoice('${docSnap.id}')">🖨️ طباعة</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+            } catch (error) {
+                console.error('Error loading invoices:', error);
+            }
+        }
+
+        window.viewInvoice = async function(invoiceId) {
+            try {
+                const invoiceDoc = await getDoc(doc(db, 'invoices', invoiceId));
+                if (!invoiceDoc.exists()) {
+                    showAlert('الفاتورة غير موجودة', 'danger');
+                    return;
+                }
+
+                currentInvoiceData = invoiceDoc.data();
+                const userData = JSON.parse(localStorage.getItem('currentUser'));
+
+                // Get company data if not loaded
+                if (!companyData) {
+                    const companyDoc = await getDoc(doc(db, 'companies', userData.companyId));
+                    if (companyDoc.exists()) companyData = companyDoc.data();
+                }
+
+                const date = currentInvoiceData.createdAt ? 
+                    new Date(currentInvoiceData.createdAt.toDate()).toLocaleString('ar-EG') : '-';
+
+                let itemsHtml = '';
+                if (currentInvoiceData.items) {
+                    currentInvoiceData.items.forEach((item, index) => {
+                        itemsHtml += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.name}</td>
+                                <td>${item.price.toFixed(2)}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.total.toFixed(2)}</td>
+                            </tr>
+                        `;
+                    });
+                }
+
+                const content = document.getElementById('invoiceContent');
+                content.innerHTML = `
+                    <div class="invoice-print" id="printableInvoice">
+                        <div class="invoice-header">
+                            ${companyData && companyData.logo ? `<img src="${companyData.logo}" alt="شعار الشركة">` : ''}
+                            <h2>${companyData ? companyData.name : 'Zero POS'}</h2>
+                            ${companyData && companyData.taxNumber ? `<p>الرقم الضريبي: ${companyData.taxNumber}</p>` : ''}
+                            ${companyData && companyData.phones ? `
+                                <p style="font-size:14px; color:#666;">
+                                    ${companyData.phones.mobile ? `موبايل: ${companyData.phones.mobile} | ` : ''}
+                                    ${companyData.phones.landline ? `أرضي: ${companyData.phones.landline} | ` : ''}
+                                    ${companyData.phones.service ? `خدمة: ${companyData.phones.service}` : ''}
+                                </p>
+                            ` : ''}
+                        </div>
+
+                        <div class="invoice-details">
+                            <div>
+                                <p><strong>رقم الفاتورة:</strong> ${currentInvoiceData.invoiceNumber}</p>
+                                <p><strong>التاريخ:</strong> ${date}</p>
+                                <p><strong>الحالة:</strong> ${currentInvoiceData.status || 'مكتملة'}</p>
+                            </div>
+                            <div>
+                                <p><strong>العميل:</strong> ${currentInvoiceData.customerName}</p>
+                                <p><strong>الكاشير:</strong> ${currentInvoiceData.createdByName || '-'}</p>
+                            </div>
+                        </div>
+
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>المنتج</th>
+                                    <th>السعر</th>
+                                    <th>الكمية</th>
+                                    <th>الإجمالي</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${itemsHtml}
+                            </tbody>
+                        </table>
+
+                        <div class="invoice-totals">
+                            <div><strong>المجموع:</strong> ${currentInvoiceData.subtotal ? currentInvoiceData.subtotal.toFixed(2) : '0.00'} ج.م</div>
+                            ${currentInvoiceData.discount > 0 ? `<div><strong>الخصم:</strong> ${currentInvoiceData.discount.toFixed(2)} ج.م</div>` : ''}
+                            <div class="grand-total"><strong>الإجمالي النهائي:</strong> ${currentInvoiceData.total ? currentInvoiceData.total.toFixed(2) : '0.00'} ج.م</div>
+                        </div>
+
+                        <div style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px dashed #ccc;">
+                            <p style="font-size:14px; color:#666;">شكراً لثقتكم بنا</p>
+                            <p style="font-size:12px; color:#999;">تم إنشاء هذه الفاتورة بواسطة نظام Zero POS</p>
+                        </div>
+                    </div>
+                `;
+
+                openModal('invoiceViewModal');
+
+            } catch (error) {
+                showAlert('خطأ: ' + error.message, 'danger');
+            }
+        };
+
+        window.printInvoice = async function(invoiceId) {
+            await viewInvoice(invoiceId);
+            setTimeout(() => printCurrentInvoice(), 500);
+        };
+
+        window.printCurrentInvoice = function() {
+            window.print();
+        };
+
+        window.downloadPDF = function() {
+            alert('سيتم تحميل الفاتورة كـ PDF - قيد التطوير');
+        };
+
+        window.filterInvoices = async function() {
+            const filterDate = document.getElementById('filterDate').value;
+            if (!filterDate) {
+                loadInvoices();
+                return;
+            }
+
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            const startDate = new Date(filterDate);
+            startDate.setHours(0,0,0,0);
+            const endDate = new Date(filterDate);
+            endDate.setHours(23,59,59,999);
+
+            try {
+                const q = query(
+                    collection(db, 'invoices'),
+                    where('companyId', '==', userData.companyId),
+                    where('createdAt', '>=', Timestamp.fromDate(startDate)),
+                    where('createdAt', '<=', Timestamp.fromDate(endDate)),
+                    orderBy('createdAt', 'desc')
+                );
+
+                const snapshot = await getDocs(q);
+                const tbody = document.getElementById('invoicesTableBody');
+                tbody.innerHTML = '';
+
+                if (snapshot.empty) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">لا توجد فواتير في هذا التاريخ</td></tr>';
+                    return;
+                }
+
+                snapshot.forEach(docSnap => {
+                    const inv = docSnap.data();
+                    const date = inv.createdAt ? new Date(inv.createdAt.toDate()).toLocaleDateString('ar-EG') : '-';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${inv.invoiceNumber}</strong></td>
+                            <td>${inv.customerName}</td>
+                            <td>${inv.items ? inv.items.length : 0} منتجات</td>
+                            <td>${inv.total ? inv.total.toFixed(2) : '0.00'} ج.م</td>
+                            <td><span class="badge badge-${inv.status === 'مكتملة' ? 'success' : 'warning'}">${inv.status || 'مكتملة'}</span></td>
+                            <td>${date}</td>
+                            <td>${inv.createdByName || '-'}</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewInvoice('${docSnap.id}')">👁️ عرض</button>
+                                <button class="btn btn-sm btn-info" onclick="printInvoice('${docSnap.id}')">🖨️ طباعة</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+            } catch (error) {
+                console.error('Filter error:', error);
+            }
+        };
+
+        loadInvoices();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+📄 reports.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - التقارير</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .report-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        .report-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .chart-container {
+            height: 300px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            height: 250px;
+            padding: 20px;
+            border-bottom: 2px solid var(--border);
+            border-right: 2px solid var(--border);
+        }
+        .bar {
+            flex: 1;
+            background: var(--primary);
+            border-radius: 5px 5px 0 0;
+            min-width: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .bar:hover {
+            opacity: 0.8;
+        }
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .summary-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .summary-item h4 {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .summary-item p {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item"><span class="menu-icon">🏠</span><span>الرئيسية</span></a>
+                <a href="sales.html" class="menu-item"><span class="menu-icon">🛒</span><span>المبيعات</span></a>
+                <a href="products.html" class="menu-item"><span class="menu-icon">📦</span><span>المنتجات</span></a>
+                <a href="inventory.html" class="menu-item"><span class="menu-icon">🏭</span><span>المخازن</span></a>
+                <a href="invoices.html" class="menu-item"><span class="menu-icon">🧾</span><span>الفواتير</span></a>
+                <a href="reports.html" class="menu-item active"><span class="menu-icon">📊</span><span>التقارير</span></a>
+                <a href="users.html" class="menu-item admin-only"><span class="menu-icon">👥</span><span>المستخدمين</span></a>
+                <a href="#" class="menu-item" onclick="logout(); return false;"><span class="menu-icon">🚪</span><span>تسجيل الخروج</span></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);"><span id="currentDate"></span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📊 فلاتر التقارير</h2>
+                </div>
+                <div class="report-filters">
+                    <div class="form-group" style="flex:1; min-width:200px;">
+                        <label>من تاريخ</label>
+                        <input type="date" id="fromDate" class="form-control">
+                    </div>
+                    <div class="form-group" style="flex:1; min-width:200px;">
+                        <label>إلى تاريخ</label>
+                        <input type="date" id="toDate" class="form-control">
+                    </div>
+                    <div class="form-group" style="flex:1; min-width:200px;">
+                        <label>نوع التقرير</label>
+                        <select id="reportType" class="form-control">
+                            <option value="sales">📈 مبيعات</option>
+                            <option value="products">📦 منتجات</option>
+                            <option value="inventory">🏭 مخزون</option>
+                            <option value="users">👥 مستخدمين</option>
+                        </select>
+                    </div>
+                    <div style="display:flex; align-items:flex-end;">
+                        <button class="btn btn-primary" onclick="generateReport()" style="height:fit-content;"><span>📊</span> عرض التقرير</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="salesReport" class="report-card">
+                <h3 style="margin-bottom:20px;">📈 تقرير المبيعات</h3>
+                <div class="summary-grid">
+                    <div class="summary-item"><h4>إجمالي المبيعات</h4><p id="totalSales">0 ج.م</p></div>
+                    <div class="summary-item"><h4>عدد الفواتير</h4><p id="totalInvoices">0</p></div>
+                    <div class="summary-item"><h4>متوسط الفاتورة</h4><p id="avgInvoice">0 ج.م</p></div>
+                    <div class="summary-item"><h4>إجمالي الخصومات</h4><p id="totalDiscounts">0 ج.م</p></div>
+                </div>
+                <div class="chart-container">
+                    <h4 style="margin-bottom:15px;">المبيعات اليومية</h4>
+                    <div class="bar-chart" id="salesChart"><div style="text-align:center; width:100%; color:var(--secondary);">اختر نطاق تاريخ لعرض البيانات</div></div>
+                </div>
+            </div>
+
+            <div id="productsReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">📦 تقرير المنتجات الأكثر مبيعاً</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>#</th><th>المنتج</th><th>الكمية المباعة</th><th>إجمالي المبيعات</th><th>نسبة من الإجمالي</th></tr></thead>
+                        <tbody id="topProductsTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="inventoryReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">🏭 تقرير المخزون</h3>
+                <div class="summary-grid">
+                    <div class="summary-item"><h4>قيمة المخزون</h4><p id="inventoryValue">0 ج.م</p></div>
+                    <div class="summary-item"><h4>المنتجات المنخفضة</h4><p id="lowStockCount">0</p></div>
+                    <div class="summary-item"><h4>إجمالي الأصناف</h4><p id="totalProducts">0</p></div>
+                </div>
+            </div>
+
+            <div id="usersReport" class="report-card" style="display:none;">
+                <h3 style="margin-bottom:20px;">👥 تقرير أداء المستخدمين</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>المستخدم</th><th>الدور</th><th>عدد الفواتير</th><th>إجمالي المبيعات</th><th>متوسط الفاتورة</th></tr></thead>
+                        <tbody id="usersReportTable"><tr><td colspan="5" style="text-align:center;">اختر نطاق تاريخ لعرض البيانات</td></tr></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, query, where, orderBy, getDocs, Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        const today = new Date();
+        const lastMonth = new Date();
+        lastMonth.setMonth(lastMonth.getMonth() - 1);
+        document.getElementById('fromDate').value = lastMonth.toISOString().split('T')[0];
+        document.getElementById('toDate').value = today.toISOString().split('T')[0];
+
+        window.generateReport = async function() {
+            const fromDate = new Date(document.getElementById('fromDate').value);
+            const toDate = new Date(document.getElementById('toDate').value);
+            toDate.setHours(23, 59, 59, 999);
+            const reportType = document.getElementById('reportType').value;
+            const userData = JSON.parse(localStorage.getItem('currentUser'));
+            if (!userData) return;
+
+            document.getElementById('salesReport').style.display = 'none';
+            document.getElementById('productsReport').style.display = 'none';
+            document.getElementById('inventoryReport').style.display = 'none';
+            document.getElementById('usersReport').style.display = 'none';
+
+            try {
+                if (reportType === 'sales') {
+                    await generateSalesReport(fromDate, toDate, userData.companyId);
+                    document.getElementById('salesReport').style.display = 'block';
+                } else if (reportType === 'products') {
+                    await generateProductsReport(fromDate, toDate, userData.companyId);
+                    document.getElementById('productsReport').style.display = 'block';
+                } else if (reportType === 'inventory') {
+                    await generateInventoryReport(userData.companyId);
+                    document.getElementById('inventoryReport').style.display = 'block';
+                } else if (reportType === 'users') {
+                    await generateUsersReport(fromDate, toDate, userData.companyId);
+                    document.getElementById('usersReport').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Report error:', error);
+                showAlert('خطأ في تحميل التقرير', 'danger');
+            }
+        };
+
+        async function generateSalesReport(fromDate, toDate, companyId) {
+            const q = query(collection(db, 'invoices'), where('companyId', '==', companyId), where('createdAt', '>=', Timestamp.fromDate(fromDate)), where('createdAt', '<=', Timestamp.fromDate(toDate)), orderBy('createdAt', 'asc'));
+            const snapshot = await getDocs(q);
+            let totalSales = 0, totalInvoices = 0, totalDiscounts = 0;
+            const dailySales = {};
+            snapshot.forEach(doc => {
+                const inv = doc.data();
+                totalSales += inv.total || 0;
+                totalInvoices++;
+                totalDiscounts += inv.discount || 0;
+                const dateKey = inv.createdAt.toDate().toLocaleDateString('ar-EG', { day: 'numeric', month: 'short' });
+                dailySales[dateKey] = (dailySales[dateKey] || 0) + inv.total;
+            });
+            document.getElementById('totalSales').textContent = totalSales.toFixed(2) + ' ج.م';
+            document.getElementById('totalInvoices').textContent = totalInvoices;
+            document.getElementById('avgInvoice').textContent = totalInvoices > 0 ? (totalSales / totalInvoices).toFixed(2) + ' ج.م' : '0 ج.م';
+            document.getElementById('totalDiscounts').textContent = totalDiscounts.toFixed(2) + ' ج.م';
+
+            const chartContainer = document.getElementById('salesChart');
+            if (Object.keys(dailySales).length === 0) {
+                chartContainer.innerHTML = '<div style="text-align:center; width:100%; color:var(--secondary);">لا توجد بيانات في هذا النطاق</div>';
+                return;
+            }
+            const maxValue = Math.max(...Object.values(dailySales));
+            chartContainer.innerHTML = '';
+            Object.entries(dailySales).forEach(([date, value]) => {
+                const height = maxValue > 0 ? (value / maxValue) * 100 : 0;
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = height + '%';
+                bar.innerHTML = `<div class="bar-value">${value.toFixed(0)}</div><div class="bar-label">${date}</div>`;
+                chartContainer.appendChild(bar);
+            });
+        }
+
+        async function generateProductsReport(fromDate, toDate, companyId) {
+            const q = query(collection(db, 'invoices'), where('companyId', '==', companyId), where('createdAt', '>=', Timestamp.fromDate(fromDate)), where('createdAt', '<=', Timestamp.fromDate(toDate)));
+            const snapshot = await getDocs(q);
+            const productStats = {};
+            let grandTotal = 0;
+            snapshot.forEach(doc => {
+                const inv = doc.data();
+                if (inv.items) {
+                    inv.items.forEach(item => {
+                        if (!productStats[item.name]) productStats[item.name] = { qty: 0, total: 0 };
+                        productStats[item.name].qty += item.quantity;
+                        productStats[item.name].total += item.total;
+                        grandTotal += item.total;
+                    });
+                }
+            });
+            const tbody = document.getElementById('topProductsTable');
+            tbody.innerHTML = '';
+            const sorted = Object.entries(productStats).sort((a, b) => b[1].total - a[1].total);
+            if (sorted.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">لا توجد بيانات</td></tr>';
+                return;
+            }
+            sorted.forEach(([name, stats], index) => {
+                const percentage = grandTotal > 0 ? ((stats.total / grandTotal) * 100).toFixed(1) : 0;
+                tbody.innerHTML += `<tr><td>${index + 1}</td><td><strong>${name}</strong></td><td>${stats.qty}</td><td>${stats.total.toFixed(2)} ج.م</td><td><div style="display:flex; align-items:center; gap:10px;"><div style="flex:1; background:var(--border); height:8px; border-radius:4px; overflow:hidden;"><div style="width:${percentage}%; background:var(--primary); height:100%;"></div></div><span>${percentage}%</span></div></td></tr>`;
+            });
+        }
+
+        async function generateInventoryReport(companyId) {
+            const q = query(collection(db, 'products'), where('companyId', '==', companyId));
+            const snapshot = await getDocs(q);
+            let totalValue = 0, lowStock = 0;
+            snapshot.forEach(doc => {
+                const product = doc.data();
+                totalValue += (product.purchasePrice || 0) * (product.quantity || 0);
+                if (product.quantity <= (product.minQuantity || 5)) lowStock++;
+            });
+            document.getElementById('inventoryValue').textContent = totalValue.toFixed(2) + ' ج.م';
+            document.getElementById('lowStockCount').textContent = lowStock;
+            document.getElementById('totalProducts').textContent = snapshot.size;
+        }
+
+        async function generateUsersReport(fromDate, toDate, companyId) {
+            const q = query(collection(db, 'invoices'), where('companyId', '==', companyId), where('createdAt', '>=', Timestamp.fromDate(fromDate)), where('createdAt', '<=', Timestamp.fromDate(toDate)));
+            const snapshot = await getDocs(q);
+            const userStats = {};
+            snapshot.forEach(doc => {
+                const inv = doc.data();
+                const userName = inv.createdByName || 'غير معروف';
+                if (!userStats[userName]) userStats[userName] = { invoices: 0, total: 0 };
+                userStats[userName].invoices++;
+                userStats[userName].total += inv.total || 0;
+            });
+            const tbody = document.getElementById('usersReportTable');
+            tbody.innerHTML = '';
+            if (Object.keys(userStats).length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">لا توجد بيانات</td></tr>';
+                return;
+            }
+            Object.entries(userStats).forEach(([name, stats]) => {
+                tbody.innerHTML += `<tr><td><strong>${name}</strong></td><td>-</td><td>${stats.invoices}</td><td>${stats.total.toFixed(2)} ج.م</td><td>${stats.invoices > 0 ? (stats.total / stats.invoices).toFixed(2) : '0'} ج.م</td></tr>`;
+            });
+        }
+
+        generateReport();
+    </script>
+</body>
+</html>
+

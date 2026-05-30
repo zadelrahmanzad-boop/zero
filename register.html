@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - تسجيل الشركة</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-container" style="max-width:700px;">
+            <h1 style="text-align:center; margin-bottom:30px; color:var(--primary);">🏢 تسجيل الشركة</h1>
+
+            <form id="companyRegisterForm">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>اسم الشركة *</label>
+                        <input type="text" id="companyName" class="form-control" placeholder="اسم الشركة" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الرقم الضريبي</label>
+                        <input type="text" id="taxNumber" class="form-control" placeholder="الرقم الضريبي إن وجد">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>شعار الشركة</label>
+                    <div class="image-upload" onclick="document.getElementById('companyLogo').click()">
+                        <input type="file" id="companyLogo" accept="image/*" style="display:none;" onchange="previewLogo(this)">
+                        <div id="logoPreviewArea">
+                            <span style="font-size:40px;">📷</span>
+                            <p>اضغط لاختيار صورة الشعار</p>
+                        </div>
+                        <img id="logoPreview" style="display:none; max-width:200px; margin-top:15px;">
+                    </div>
+                </div>
+
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label>التليفون الأرضي</label>
+                        <input type="tel" id="landline" class="form-control" placeholder="02-xxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label>الموبايل</label>
+                        <input type="tel" id="mobile" class="form-control" placeholder="01xxxxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label>خدمة العملاء / الديليفري</label>
+                        <input type="tel" id="serviceNumber" class="form-control" placeholder="رقم الخدمة">
+                    </div>
+                </div>
+
+                <hr style="margin:30px 0; border-color:var(--border);">
+
+                <h3 style="color:var(--primary); margin-bottom:20px;">👤 بيانات المدير</h3>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>البريد الإلكتروني الافتراضي *</label>
+                        <input type="email" id="adminEmail" class="form-control" value="admin@zero.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>كلمة المرور *</label>
+                        <input type="password" id="adminPassword" class="form-control" value="123456" required>
+                        <small style="color:var(--secondary);">الافتراضي: 123456</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:25px;">
+                    <span>✅</span> تسجيل الشركة والمدير
+                </button>
+            </form>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="index.html" style="color:var(--primary); text-decoration:none;">← العودة لتسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                    document.getElementById('logoPreview').style.display = 'block';
+                    document.getElementById('logoPreviewArea').style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero POS - الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img id="sidebarLogo" class="sidebar-logo" src="" alt="شعار الشركة">
+                <div id="sidebarCompany" class="sidebar-company">Zero POS</div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">
+                    <span class="menu-icon">🏠</span>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <span class="menu-icon">🛒</span>
+                    <span>المبيعات</span>
+                </a>
+                <a href="products.html" class="menu-item">
+                    <span class="menu-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <span class="menu-icon">🏭</span>
+                    <span>المخازن</span>
+                </a>
+                <a href="invoices.html" class="menu-item">
+                    <span class="menu-icon">🧾</span>
+                    <span>الفواتير</span>
+                </a>
+                <a href="reports.html" class="menu-item">
+                    <span class="menu-icon">📊</span>
+                    <span>التقارير</span>
+                </a>
+                <a href="users.html" class="menu-item admin-only">
+                    <span class="menu-icon">👥</span>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout(); return false;">
+                    <span class="menu-icon">🚪</span>
+                    <span>تسجيل الخروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <div class="user-avatar current-user-name">A</div>
+                    <div>
+                        <div style="font-weight:bold;" class="current-user-name">المستخدم</div>
+                        <div style="font-size:12px; color:var(--secondary);" class="current-user-role">-</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <div id="sessionTimer" class="session-timer">00:00:00</div>
+                    <div style="font-size:14px; color:var(--secondary);">
+                        <span id="currentDate"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">💰</div>
+                    <div class="stat-details">
+                        <h3 id="todaySales">0</h3>
+                        <p>مبيعات اليوم</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">📦</div>
+                    <div class="stat-details">
+                        <h3 id="totalProducts">0</h3>
+                        <p>إجمالي المنتجات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">⚠️</div>
+                    <div class="stat-details">
+                        <h3 id="lowStock">0</h3>
+                        <p>منتجات منخفضة</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">🧾</div>
+                    <div class="stat-details">
+                        <h3 id="todayInvoices">0</h3>
+                        <p>فواتير اليوم</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">⚡ إجراءات سريعة</h2>
+                </div>
+                <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                    <a href="sales.html" class="btn btn-primary">
+                        <span>🛒</span> عملية بيع جديدة
+                    </a>
+                    <a href="products.html" class="btn btn-success">
+                        <span>➕</span> إضافة منتج
+                    </a>
+                    <a href="invoices.html" class="btn btn-secondary">
+                        <span>🧾</span> عرض الفواتير
+                    </a>
+                    <button class="btn btn-warning admin-only" onclick="toggleMaintenance()" style="display:none;">
+                        <span>🔧</span> وضع الصيانة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Invoices -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📋 أحدث الفواتير</h2>
+                    <a href="invoices.html" style="color:var(--primary);">عرض الكل →</a>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الفاتورة</th>
+                                <th>العميل</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentInvoicesBody">
+                            <tr>
+                                <td colspan="5" style="text-align:center; color:var(--secondary);">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
